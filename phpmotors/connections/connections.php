@@ -2,7 +2,7 @@
  $server = 'localhost';
  $dbname= 'phpmotors';
  $username = 'iClient';
- $password = 'Clunker08'; 
+ $password = 'Clunker0'; 
  $dsn = "mysql:host=$server;dbname=$dbname";
  $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
@@ -20,6 +20,6 @@
  }
 } 
 
-// phpmotorsConnect();
+phpmotorsConnect();
 
 ?>
