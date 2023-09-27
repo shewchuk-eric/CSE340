@@ -1,4 +1,5 @@
-<?php include_once 'views/header.php'; ?>
+<?php include_once 'views/header.php'; 
+    require 'connections/connections.php'?>
 
 <h1 id="content-title">Welcome to PHP Motors!</h1>
 

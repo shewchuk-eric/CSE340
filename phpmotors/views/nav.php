@@ -1,6 +1,6 @@
 
     <nav>
-        <a href="home.php">Home</a>
+        <a href="http://localhost:3000/phpmotors/home.php">Home</a>
         <a href="#">Classic</a>
         <a href="#">Sports</a>
         <a href="#">SUV</a>

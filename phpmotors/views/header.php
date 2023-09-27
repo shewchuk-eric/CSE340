@@ -6,12 +6,12 @@
     <meta name="author" content="Eric Shewchuk">
     <meta name="description" content="CSE340 - Web Backend Development for Eric Shewchuk.  This is the PHP Motors assignment">
     <title>Eric Shewchuk - CSE340 - PHP Motors</title>
-    <link rel="stylesheet" href="styles/motors.css">
+    <link rel="stylesheet" href="http://localhost:3000/phpmotors/styles/motors.css">
 </head>
 <body>
 <header>
-    <img src="images/logo.png" alt="image of PHP Motors logo">
+    <img src="http://localhost:3000/phpmotors/images/logo.png" alt="image of PHP Motors logo">
     <span id="account"><a href="#">My Account</a></span>
-    <?php include_once 'views/nav.php'; ?>
+    <?php include_once ($_SERVER["DOCUMENT_ROOT"]."/phpmotors/views/nav.php"); ?>
 </header>
     <main>
