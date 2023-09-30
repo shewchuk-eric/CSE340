@@ -12,6 +12,6 @@
 <header>
     <img src="http://localhost:3000/phpmotors/images/logo.png" alt="image of PHP Motors logo">
     <span id="account"><a href="#">My Account</a></span>
-    <?php include_once ($_SERVER["DOCUMENT_ROOT"]."/phpmotors/views/nav.php"); ?>
+    <?php echo $navList; ?> <?php //include_once ($_SERVER["DOCUMENT_ROOT"]."/phpmotors/views/nav.php"); ?>
 </header>
     <main>
