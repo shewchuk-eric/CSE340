@@ -1,4 +1,4 @@
-<?php include_once 'views/header.php'; 
+<?php include_once 'header.php'; 
     require 'connections/connections.php'?>
 
 <h1 id="content-title">Welcome to PHP Motors!</h1>
@@ -29,4 +29,4 @@
         <li>"80's livin and I love it!" (5/5)</li>
     </ul>
 
-<?php include_once 'views/footer.php'; ?>
+<?php include_once 'footer.php'; ?>

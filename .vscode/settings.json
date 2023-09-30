@@ -7,9 +7,9 @@
             },
             "previewLimit": 50,
             "server": "localhost",
-            "port": 3307,
+            "port": 3308,
             "driver": "MySQL",
-            "name": "Localhost-phpmotors",
+            "name": "localTest",
             "database": "phpmotors",
             "username": "iClient"
         }
