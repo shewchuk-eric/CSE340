@@ -1,5 +1,5 @@
 <?php include_once 'header.php'; 
-   // require 'connections/connections.php'?>
+   // require 'library/connections.php'?>
 
 <h1 id="content-title">Welcome to PHP Motors!</h1>
 

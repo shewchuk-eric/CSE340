@@ -1,7 +1,7 @@
-<?php // This is the main views controller
+<?php  //This is the Accounts controller
 
-require_once 'library/connections.php';
-require_once 'model/main-model.php';
+require_once '../library/connections.php';
+require_once '../model/main-model.php';
 
 
 $classifications = getClassifications(); // get classifications from main-model.php
@@ -24,12 +24,16 @@ $action = filter_input(INPUT_POST, 'action');
   $action = filter_input(INPUT_GET, 'action');
  }
 
+
  switch ($action){
-    case 'something':
-        echo "That fart smells."; 
-        break;   
+    case 'login':
+        include '../views/login.php';
+        break;
+    case 'register':
+        include '../views/register.php'; 
+        break; 
     default:
-        include 'views/home.php';
+        echo 'switch not working';
    }
 
  ?>
