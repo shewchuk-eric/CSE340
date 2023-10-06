@@ -5,10 +5,10 @@
 ************************/
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 
-// import other styles
+// sass --watch phpmotors/styles/base.scss:phpmotors/styles/motors.css
+
+// import form styles
 @import 'form';
-@import 'medium';
-@import 'large';
 
 // create variables
 $dark: #2f5d85;
@@ -200,3 +200,6 @@ footer {
     #four-p {
         grid-area: 4/2/5/3;
     }
+
+    @import 'medium';
+    @import 'large';

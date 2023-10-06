@@ -101,121 +101,10 @@ input[type=submit]:hover {
   text-shadow: 0 1px 0 #000;
 }
 
-@media screen and (min-width: 551px) and (max-width: 850px) {
-  #name {
-    grid-row: 2;
-    grid-column: 1/3;
-  }
-  #car {
-    grid-area: 2/1/4/5;
-  }
-  #button {
-    position: absolute;
-    top: 21rem;
-    left: 2rem;
-  }
-  #upgrades {
-    grid-area: 4/1/5/3;
-    margin: 0.5em auto;
-  }
-  #upgrade-card {
-    grid-area: 5/1/7/3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.2rem;
-    justify-items: center;
-  }
-  #reviews {
-    grid-area: 4/3/5/5;
-    margin-left: 0.1em;
-  }
-  #reviews-list {
-    grid-area: 5/3/7/5;
-    line-height: 150%;
-  }
-  #one {
-    grid-area: 1/1/2/2;
-  }
-  #one-p {
-    grid-area: 2/1/3/2;
-  }
-  #two {
-    grid-area: 1/2/2/3;
-  }
-  #two-p {
-    grid-area: 2/2/3/3;
-  }
-  #three {
-    grid-area: 3/1/4/2;
-  }
-  #three-p {
-    grid-area: 4/1/5/2;
-  }
-  #four {
-    grid-area: 3/2/4/3;
-  }
-  #four-p {
-    grid-area: 4/2/5/3;
-  }
+input:required {
+  background-color: rgb(247, 247, 179);
 }
-@media screen and (min-width: 851px) {
-  #name {
-    grid-row: 2;
-    grid-column: 1/3;
-  }
-  #car {
-    grid-area: 2/1/4/5;
-  }
-  #button {
-    position: relative;
-    top: -27em;
-    left: -80%;
-    width: 10em;
-  }
-  #upgrades {
-    grid-area: 4/1/5/3;
-    margin: 0.5em auto;
-  }
-  #upgrade-card {
-    grid-area: 5/1/7/3;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.2rem;
-    justify-items: center;
-  }
-  #reviews {
-    grid-area: 4/3/5/5;
-    margin-left: 0.1em;
-  }
-  #reviews-list {
-    grid-area: 5/3/7/5;
-    line-height: 150%;
-  }
-  #one {
-    grid-area: 1/1/2/2;
-  }
-  #one-p {
-    grid-area: 2/1/3/2;
-  }
-  #two {
-    grid-area: 1/2/2/3;
-  }
-  #two-p {
-    grid-area: 2/2/3/3;
-  }
-  #three {
-    grid-area: 3/1/4/2;
-  }
-  #three-p {
-    grid-area: 4/1/5/2;
-  }
-  #four {
-    grid-area: 3/2/4/3;
-  }
-  #four-p {
-    grid-area: 4/2/5/3;
-  }
-}
+
 /**************
 * Base Styles *
 **************/
@@ -398,6 +287,122 @@ footer {
 
 #four-p {
   grid-area: 4/2/5/3;
+}
+
+@media screen and (min-width: 551px) and (max-width: 850px) {
+  #name {
+    grid-row: 2;
+    grid-column: 1/3;
+  }
+  #car {
+    grid-area: 2/1/4/5;
+  }
+  #button {
+    position: absolute;
+    top: 21rem;
+    left: 2rem;
+  }
+  #upgrades {
+    grid-area: 4/1/5/3;
+    margin: 0.5em auto;
+  }
+  #upgrade-card {
+    grid-area: 5/1/7/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2rem;
+    justify-items: center;
+  }
+  #reviews {
+    grid-area: 4/3/5/5;
+    margin-left: 0.1em;
+  }
+  #reviews-list {
+    grid-area: 5/3/7/5;
+    line-height: 150%;
+  }
+  #one {
+    grid-area: 1/1/2/2;
+  }
+  #one-p {
+    grid-area: 2/1/3/2;
+  }
+  #two {
+    grid-area: 1/2/2/3;
+  }
+  #two-p {
+    grid-area: 2/2/3/3;
+  }
+  #three {
+    grid-area: 3/1/4/2;
+  }
+  #three-p {
+    grid-area: 4/1/5/2;
+  }
+  #four {
+    grid-area: 3/2/4/3;
+  }
+  #four-p {
+    grid-area: 4/2/5/3;
+  }
+}
+@media screen and (min-width: 851px) {
+  #name {
+    grid-row: 2;
+    grid-column: 1/3;
+  }
+  #car {
+    grid-area: 2/1/4/5;
+  }
+  #button {
+    position: relative;
+    top: -27em;
+    left: -80%;
+    width: 10em;
+  }
+  #upgrades {
+    grid-area: 4/1/5/3;
+    margin: 0.5em auto;
+  }
+  #upgrade-card {
+    grid-area: 5/1/7/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2rem;
+    justify-items: center;
+  }
+  #reviews {
+    grid-area: 4/3/5/5;
+    margin-left: 0.1em;
+  }
+  #reviews-list {
+    grid-area: 5/3/7/5;
+    line-height: 150%;
+  }
+  #one {
+    grid-area: 1/1/2/2;
+  }
+  #one-p {
+    grid-area: 2/1/3/2;
+  }
+  #two {
+    grid-area: 1/2/2/3;
+  }
+  #two-p {
+    grid-area: 2/2/3/3;
+  }
+  #three {
+    grid-area: 3/1/4/2;
+  }
+  #three-p {
+    grid-area: 4/1/5/2;
+  }
+  #four {
+    grid-area: 3/2/4/3;
+  }
+  #four-p {
+    grid-area: 4/2/5/3;
+  }
 }
 
 /*# sourceMappingURL=motors.css.map */

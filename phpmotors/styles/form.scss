@@ -92,3 +92,6 @@ input[type="submit"]:hover {
 	background: $light;
 	text-shadow:0 1px 0 #000;
 }
+input:required {
+	background-color: rgb(247, 247, 179);
+}
