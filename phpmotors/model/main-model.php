@@ -9,3 +9,5 @@ function getClassifications(){
     $stmt->closeCursor(); // Close the connection
     return $classifications;
 }
+
+?>
