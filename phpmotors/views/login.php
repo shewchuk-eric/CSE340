@@ -2,7 +2,14 @@
 
 <h1 id='form-title'>Login To Your Account</h1>
 <section class='form-container'>
-    <form id='login'>
+
+<?php
+    if(isset($message)) {
+        echo $message;
+    }
+    ?>
+
+    <form id='login' action="/phpmotors/accounts/index.php" method="post">
         <fieldset><legend>Returning Users</legend>
         <div class="form-field input-right">
             <label for="clientEmail">Email</label>
@@ -15,7 +22,7 @@
         <div class="form-field submit-field">
             <input type="submit" value="Login Now">
         </div>
-        <p>No Account? <a href='/phpmotors/accounts/index.php?action=register' title='New User Registration'>Create One</a></p>
+        <p>No Account? <a href='/phpmotors/accounts/index.php?action=registration' title='New User Registration'>Create One</a></p>
         </fieldset>
     </form>
 </section>

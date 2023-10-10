@@ -4,7 +4,7 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     $db = phpmotorsConnect(); // Create a connection object
     $sql = 'INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword) VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)'; // The SQL query with placeholders for insert values
     $stmt = $db->prepare($sql); // Prepare the statement
-    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR); // Prevents injection attacks by filtering user input
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR); // Tells database what type of information is being sent
     $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
     $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
     $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
