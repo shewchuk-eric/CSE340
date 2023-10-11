@@ -46,8 +46,8 @@ $action = filter_input(INPUT_POST, 'action');
         }
         $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword); // all fields populated - send to insert function in 'accounts-model.php'
         if ($regOutcome === 1) {
-            $message = "<p>Thanks for registereing, $clientFirstname. Please use your email and password to login.</p>";
-            include '../views/registration.php';
+            $message = "<p>Thanks for registering, $clientFirstname. Please use your email and password to login.</p>";
+            include '../views/login.php';
             exit;
         } else {
             $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
