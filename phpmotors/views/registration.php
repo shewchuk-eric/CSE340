@@ -21,7 +21,7 @@
         </div>
         <div class="form-field input-right">
             <label for="clientEmail">Email</label>
-            <input name="clientEmail" id="clientEmail" type="email" >
+            <input name="clientEmail" id="clientEmail" type="email" required>
         </div>
         <div class="form-field input-right">
             <label for="clientPassword">Password</label>
