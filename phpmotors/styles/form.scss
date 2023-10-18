@@ -92,6 +92,23 @@ input[type="submit"]:hover {
 	background: $light;
 	text-shadow:0 1px 0 #000;
 }
+input[type="select"] {
+	flex:0 1 80%;
+}
+textarea {
+	flex:0 1 80%;
+}
 input:required {
 	background-color: rgb(247, 247, 179);
+}
+
+button {
+	margin: auto;
+	padding: 1rem;
+	border-radius: .5em;
+}
+
+button a {
+	text-decoration: none;
+	color: black;
 }
