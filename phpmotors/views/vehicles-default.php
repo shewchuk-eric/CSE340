@@ -1,4 +1,7 @@
-<?php include_once 'header.php'; ?>
+<?php 
+$title = 'Manage Vehicles | Admin Section';
+include_once 'header.php'; 
+?>
 
 <h1 id='form-title'>Vehicle Manager</h1>
 <section class='form-container'>
