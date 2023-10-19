@@ -1,6 +1,6 @@
 <?php include_once 'header.php'; ?>
 
-<h1 id='form-title'>Login To Your Account</h1>
+<h1 id='form-title'>Manage Vehicle Inventory</h1>
 <section class='form-container'>
 
 <?php
