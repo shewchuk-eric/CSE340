@@ -28,7 +28,3 @@
 </section>
 
 <?php include_once 'footer.php'; ?>
-
-<!-- <div class="form-field submit-field">
-            <input type="submit" value="Create Account">
-            <input type="hidden" name="action" value="register"> add name/value pair for action value -->
