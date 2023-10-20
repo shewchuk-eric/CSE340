@@ -10,16 +10,18 @@
     }
     ?>
 
-    <form id='empty' action="#" method="post">
+    <form>
         <fieldset><legend>Options</legend>
-        <div class="form-field input-right">
-            <button type="button"><a href='/phpmotors/vehicles/index.php?action=newClass' title='New Vehicle Classification'>Vehicle Classifications</a>
+        <div>
+            <div class="button"><a href='/phpmotors/vehicles/index.php?action=newClass' title='New Vehicle Classification'>Vehicle Classifications</a></div>
         </div>
-        <div class="form-field input-right">
-            <button type="button"><a href='/phpmotors/vehicles/index.php?action=manage' title='Add Vehicle Inventory'>Manage Vehicle Inventory</a>
+        <div>
+            <div class="button"><a href='/phpmotors/vehicles/index.php?action=manage' title='Add Vehicle Inventory'>Manage Vehicle Inventory</a></div>
         </div>
         </fieldset>
     </form>
 </section>
 
 <?php include_once 'footer.php'; ?>
+
+<!-- class="form-field" -->

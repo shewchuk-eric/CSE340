@@ -11,14 +11,12 @@ $accent: #a6cbeb;
 
 .form-container {
     grid-area: 2/1/3/5;
-	display:flex;
-	justify-content:center;
-	align-items:center;
 	margin-bottom: 2em;	
 }
 
 form {
-	max-width:75%;
+	max-width:80%;
+	margin: auto;
 	padding:2em;
 	background:#fff;
 	border-radius:0.25em;
@@ -26,6 +24,7 @@ form {
 }
 
 input, select {
+	width: 95%;
 	padding:0.5em;
 	font-size:0.875em;
 	font-family:inherit;
@@ -47,12 +46,13 @@ select:focus {
 }
 
 .form-field {
-	display:flex;
 	margin-bottom:1em;
 }
 
 .form-field label {
-	flex: 0 1 7em;
+	width: 10em;
+	margin-bottom: .3em;
+	display: block;
 	padding:1em;
 	background: $dark;
 	border:1px solid $light;
@@ -60,15 +60,12 @@ select:focus {
 	font-size:0.75em;
 	text-align:center;
 	line-height:1;
+	border-radius:0.25em 0 0 0.25em;
 }
 
 .form-field input,
 .form-field select {
-	flex:1 1;
-}
-
-.form-field label {
-	border-radius:0.25em 0 0 0.25em;
+	width: 95%;
 }
 
 .input-right input,
@@ -93,6 +90,7 @@ input[type="submit"] {
 	border:0;
 	transition:0.3s;
 	cursor:pointer;
+	width: 20em;
 }
 
 input[type="submit"]:hover {
@@ -102,24 +100,29 @@ input[type="submit"]:hover {
 }
 
 input[type="select"] {
-	flex:0 1 80%;
+	max-width: 75%;
 }
 
 textarea {
-	flex:0 1 85%;
+	width: 95%;
 }
 
 input:required {
 	background-color: rgb(247, 247, 179);
 }
 
-button {
-	margin: auto;
+.button {
+	display: block;
+	max-width: fit-content;
+	text-align: center;
+	background-color: $accent;
+	margin: 0px auto 2em auto;
 	padding: 1rem;
 	border-radius: .5em;
 }
 
-button a {
+.button a {
 	text-decoration: none;
 	color: black;
+	font-size: .7em;
 }

@@ -80,7 +80,6 @@ $action = filter_input(INPUT_POST, 'action');
         }
         $regOutcome = newClassification($classificationName); // all fields populated - send to insert function in 'accounts-model.php'
         if ($regOutcome === 1) {
-            // $message = "<p>The $classificationName classification has been added.</p>";
             include '../views/vehicles-default.php';
             exit;
         } else {
