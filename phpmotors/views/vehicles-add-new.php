@@ -25,11 +25,11 @@
         </div>
         <div class="form-field input-right">
             <label for="invImage">Vehicle Image</label>
-            <input name="invImage" id="invImage" type="file">
+            <input name="invImage" id="invImage" type="file" required>
         </div>
         <div class="form-field input-right">
             <label for="invThumbnail">Thumbnail Image</label>
-            <input name="invThumbnail" id="invThumbnail" type="file">
+            <input name="invThumbnail" id="invThumbnail" type="file" required>
         </div>
         <div class="form-field input-right">
             <label for="invPrice">Vehicle Price</label>
