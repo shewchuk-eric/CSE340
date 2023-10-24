@@ -111,6 +111,10 @@ input:required {
   background-color: rgb(247, 247, 179);
 }
 
+input:required:valid {
+  background-color: rgb(179, 247, 181);
+}
+
 .button {
   display: block;
   max-width: fit-content;
@@ -125,6 +129,16 @@ input:required {
   text-decoration: none;
   color: black;
   font-size: 0.7em;
+}
+
+#password {
+  display: none;
+  color: white;
+}
+
+#password.expanded {
+  display: block;
+  color: red;
 }
 
 /**************
