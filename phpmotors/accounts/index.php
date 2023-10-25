@@ -44,7 +44,9 @@ $action = filter_input(INPUT_POST, 'action');
             include '../views/registration.php'; // empty field is found - show error message
             exit;
         }
-        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword); // all fields populated - send to insert function in 'accounts-model.php'
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword); // all fields populated - send to insert function in 'accounts-model.php'
         if ($regOutcome === 1) {
             $message = "<p>Thanks for registering, $clientFirstname. Please use your email and password to login.</p>";
             include '../views/login.php';
