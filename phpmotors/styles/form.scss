@@ -137,6 +137,12 @@ input:required:valid {
 }
 
 #password.expanded {
+	animation: colorChange 1s ease-in-out 1;
 	display: block;
 	color: red;
+}
+
+@keyframes colorChange {
+	from {color: white;}
+	to {color: red;}
 }
