@@ -1,4 +1,5 @@
-<?php include_once 'header.php'; ?>
+<?php $pageTitle = "Admin - create a new vehicle classification || PHP Motors, inc.";
+    include_once 'header.php'; ?>
 
 <h1 id='form-title'>Manage Vehicle Classifications</h1>
 <section class='form-container'>
@@ -12,12 +13,9 @@
     <form id='addNewClass' action="/phpmotors/vehicles/index.php" method="post">
         <fieldset><legend>Vehicle Classifications</legend>
         <div class="form-field input-right">
-            <label for="classes">Existing Classes</label>
-            <?php echo $typeList; ?>
-        </div>
-        <div class="form-field input-right">
-            <label for="addClassification">Add New Class</label>
-            <input name="classificationName" id="classificationName" type="input" required>
+            <label for="addClassification">Name Of New Class</label>
+            <span>Requires 1 to 30 characters</span>
+            <input name="classificationName" id="classificationName" type="input" required pattern="(?=^.{1,30}$).*$">
         </div>
         <div class="form-field submit-field">
             <input type="submit" value="Add New Class">

@@ -1,4 +1,5 @@
-<?php include_once 'header.php'; 
+<?php $pageTitle = "Admin - vehicle management landing page || PHP Motors, inc.";
+    include_once 'header.php'; 
 ?>
 
 <h1 id='form-title'>Vehicle Manager</h1>

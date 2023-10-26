@@ -6,7 +6,7 @@
     <meta name="author" content="Eric Shewchuk">
     <meta name="description" content="CSE340 - Web Backend Development for Eric Shewchuk.  This is the PHP Motors assignment">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <title>Eric Shewchuk - CSE340 - PHP Motors</title>
+    <title><?php echo($pageTitle);?></title>
     <link rel="stylesheet" href="http://localhost:3000/phpmotors/styles/motors.css">
 </head>
 <body>

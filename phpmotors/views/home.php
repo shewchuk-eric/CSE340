@@ -1,5 +1,6 @@
-<?php include_once 'header.php'; 
-   // require 'library/connections.php'?>
+<?php $pageTitle = "Welcome to PHP Motors, inc.";
+    include_once 'header.php';
+    ?>
 
 <h1 id="content-title">Welcome to PHP Motors!</h1>
 
