@@ -4,9 +4,8 @@ require_once '../library/connections.php'; // bring in DB connections ability
 require_once '../model/accounts-model.php'; // contains functions to manage user accounts 
 require_once '../library/functions.php'; // contains data validation functions
 
-
 $classifications = getClassList(); // get classifications from functions.php
-$navList = buildList($classifications);
+$navList = buildList($classifications); // Build the navigation list using results from getClassifications()
 
 $action = filter_input(INPUT_POST, 'action'); 
  if ($action == NULL){
