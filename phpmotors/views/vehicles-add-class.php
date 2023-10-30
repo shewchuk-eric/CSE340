@@ -13,9 +13,9 @@
     <form id='addNewClass' action="/phpmotors/vehicles/index.php" method="post">
         <fieldset><legend>Vehicle Classifications</legend>
         <div class="form-field input-right">
-            <label for="addClassification">Name Of New Class</label>
+            <label for="classificationName">Name Of New Class</label>
             <span>Requires 1 to 30 characters</span>
-            <input name="classificationName" id="classificationName" type="input" required pattern="(?=^.{1,30}$).*$">
+            <input name="classificationName" id="classificationName" type="text" required pattern="(?=^.{1,30}$).*$">
         </div>
         <div class="form-field submit-field">
             <input type="submit" value="Add New Class">

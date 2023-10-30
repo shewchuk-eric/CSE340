@@ -4,9 +4,8 @@ require_once '../library/connections.php'; // bring in DB connections ability
 require_once '../model/vehicles-model.php'; // contains functions to manage vehicle inventory 
 require_once '../library/functions.php'; // contains data validation functions
 
-// Build the navigation list using results from getClassifications()
 $classifications = getClassList(); // get classifications from main-model.php
-$navList = buildList($classifications);
+$navList = buildList($classifications); // Build the navigation list using results from getClassifications()
 
 // check for an action value
 $action = filter_input(INPUT_POST, 'action'); 

@@ -13,6 +13,6 @@
 <header>
     <img src="http://localhost:3000/phpmotors/images/logo.png" alt="image of PHP Motors logo">
     <span id="account"><a href='/phpmotors/accounts/index.php?action=login' title='Returning User Login'>My Account</a></span>
-    <?php echo $navList; ?> <?php //include_once ($_SERVER["DOCUMENT_ROOT"]."/phpmotors/views/nav.php"); ?>
+    <?php echo $navList; ?>
 </header>
     <main>

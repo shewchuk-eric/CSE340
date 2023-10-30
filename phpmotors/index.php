@@ -5,7 +5,7 @@ require_once 'library/functions.php';
 
 
 $classifications = getClassList(); // get classifications from functions.php
-$navList = buildList($classifications);
+$navList = buildList($classifications); // Build the navigation list using results from getClassifications()
 
 
 $action = filter_input(INPUT_POST, 'action');
@@ -15,7 +15,7 @@ $action = filter_input(INPUT_POST, 'action');
 
  switch ($action){
     case 'something':
-        echo "That fart smells."; 
+        echo "Maybe this will get used someday."; 
         break;   
     default:
         include 'views/home.php';

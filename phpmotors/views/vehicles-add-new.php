@@ -5,7 +5,7 @@ $typeList = '<select id="classes" name="classes">';
 foreach ($classList as $class) {
     $typeList .="<option value='$class[classificationId]'";
     if (isset($classificationId)) { // tests to see if a value is already set and makes it 'selected' if so - form value stickiness
-        if ($class['classificationId'] === $classificationId) {
+        if ($class['classificationId'] == $classificationId) {
             $typeList .= ' selected ';
         }
     }
