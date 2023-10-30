@@ -5,12 +5,6 @@
 <h1 id='form-title'>Vehicle Manager</h1>
 <section class='form-container'>
 
-<?php
-    if(isset($message)) {
-        echo $message;
-    }
-    ?>
-
     <form>
         <fieldset><legend>Options</legend>
         <div>
