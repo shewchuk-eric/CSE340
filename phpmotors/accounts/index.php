@@ -41,6 +41,13 @@ $action = filter_input(INPUT_POST, 'action');
 
         $clientEmail = checkEmail($clientEmail); // call function to validate for correct email format
         $checkPassword = checkPassword($clientPassword); // call function to validate for correct password format
+        $existingEmail = checkUniqueEmail($clientEmail); // check if email/username already exists in database
+
+        if($existingEmail) {
+            $message = '<p>The email address you entered already exists.  Do you wish to login instead?</p>';
+            include '../views/login.php';
+            exit;
+        }
 
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) { // check for any empty lines in form
             $message = '<p>Please provide information for all empty form fields.</p>';
