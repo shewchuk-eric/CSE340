@@ -7,12 +7,12 @@ function checkUniqueEmail($clientEmail) {
     $stmt = $db->prepare($sql); // Prepare the statement
     $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
     $stmt->execute(); // Run the query
-    $isMatch = $stmt->fetch(PDO::FETCH_NUM); // Ask how many rows were affected by query
+    $isMatch = $stmt->fetch(PDO::FETCH_NUM); // Look for a qualifying row and return a number as the result (1 or 0)
     $stmt->closeCursor();
     if(empty($isMatch)) {
         return 0; // No match 
     } else {
-    return 1; // Match found
+        return 1; // Match found
     }
 }
 
@@ -31,7 +31,17 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     return $rowsChanged;
 }
 
-
+// GET CLIENT DATA IN RESPONSE TO LOGIN - USES EMAIL/USERNAME TO LOCATE
+function getClient($clientEmail) {
+    $db = phpmotorsConnect(); // Create a connection object
+    $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail = :clientEmail';
+    $stmt = $db->prepare($sql); // Prepare the statement
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->execute(); // Run the query
+    $clientData = $stmt->fetch(PDO::FETCH_ASSOC); // Get any row that qualifies and return an associative array as the result
+    $stmt->closeCursor();
+    return $clientData;
+}
 
 
 ?>

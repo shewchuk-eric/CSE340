@@ -1,5 +1,7 @@
 <?php // This is the vehicles management controller
 
+session_start(); // create or access a session - required at the top of ALL controllers
+
 require_once '../library/connections.php'; // bring in DB connections ability
 require_once '../model/vehicles-model.php'; // contains functions to manage vehicle inventory 
 require_once '../library/functions.php'; // contains data validation functions

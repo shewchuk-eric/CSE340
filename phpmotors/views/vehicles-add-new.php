@@ -1,4 +1,9 @@
 <?php
+
+if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
+    header ('Location: /phpmotors/');
+}
+
 // get list of vehicle classifications for dropdown list
 $classList = getClassList(); 
 $typeList = '<select id="classes" name="classes">';
@@ -21,10 +26,13 @@ $pageTitle = "Admin - manage vehicle inventory || PHP Motors, inc.";
 <section class='form-container'>
 
 <?php
-    if(isset($message)) {
+    if(isset($_SESSION['message'])) {
+        $message = "<span class='message'>";
+        $message .= $_SESSION['message'];
+        $message .="</span>";
         echo $message;
     }
-    ?>
+?>
 
     <form id='addNew' action="/phpmotors/vehicles/index.php" method="post">
         <fieldset><legend>Inventory Management</legend>

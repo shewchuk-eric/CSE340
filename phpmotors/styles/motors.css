@@ -181,7 +181,7 @@ header a {
   grid-column: 3;
 }
 
-#account {
+.account {
   margin: 1rem 1rem auto auto;
 }
 
@@ -218,6 +218,10 @@ main {
   color: #3a3a3a;
   grid-column: 1/5;
   margin: 1rem;
+}
+
+.message {
+  margin-left: 1rem;
 }
 
 #name {
