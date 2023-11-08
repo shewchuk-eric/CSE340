@@ -2,6 +2,7 @@
 
 if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
     header ('Location: /phpmotors/');
+    exit;
 }
 
 $pageTitle = "Admin - vehicle management landing page || PHP Motors, inc.";
@@ -21,8 +22,22 @@ $pageTitle = "Admin - vehicle management landing page || PHP Motors, inc.";
         </div>
         </fieldset>
     </form>
+    <?php
+        if (isset($message)) { 
+        echo $message; 
+        } 
+        if (isset($classificationList)) { 
+        echo '<h2>Vehicles By Classification</h2>'; 
+        echo '<p>Choose a classification to see those vehicles</p>'; 
+        echo $classificationList; 
+        }
+    ?>
+    <noscript>
+        <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+    </noscript>
+    <table id="inventoryDisplay"></table> <!-- uses JavaScript to provide content -->
 </section>
-
+<script src="../scripts/inventory.js"></script>
 <?php include_once 'footer.php'; ?>
 
 <!-- class="form-field" -->
