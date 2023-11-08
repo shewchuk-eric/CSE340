@@ -18,7 +18,14 @@ $action = filter_input(INPUT_POST, 'action');
 
  // decide which view to show
  switch ($action){
+    case 'getInventoryItems': // start update and delete process when managing vehicles
+        $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT); // form changed - read the value selected
+        $inventoryArray = getInventoryByClassification($classificationId); // Fetch the vehicles by classificationId from the DB 
+        echo json_encode($inventoryArray); // *** echo must be used as a version of 'return' when working with JSON!!!
+        break;
+
     case 'default': // first time to vehicle management section - shows options
+        $classificationList = buildClassificationList($classifications);
         include '../views/vehicles-default.php';
         break;
 

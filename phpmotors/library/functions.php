@@ -22,6 +22,17 @@ function getClassList() { // function to create list of vehicle classifications
     return $classifications;
 }
 
+// BUILD CLASSIFICATIONS LIST FOR VEHICLE MANAGEMENT VIEW
+function buildClassificationList($classifications){ 
+    $classificationList = '<select name="classificationId" id="classificationList">'; 
+    $classificationList .= "<option>Choose a Classification</option>"; 
+    foreach ($classifications as $classification) { 
+     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
+    } 
+    $classificationList .= '</select>'; 
+    return $classificationList; 
+   }
+
 // USE BUILT-IN FUNCTION TO TEST FOR VALID EMAIL STRUCTURE
 function checkEmail($clientEmail) {
     $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
