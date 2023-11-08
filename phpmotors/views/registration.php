@@ -4,11 +4,14 @@
 <h1 id='form-title'>Create New Account</h1>
 <section class='form-container'>
 
-    <?php
-    if(isset($message)) {
+<?php
+    if(isset($_SESSION['message'])) {
+        $message = "<span class='message'>";
+        $message .= $_SESSION['message'];
+        $message .="</span>";
         echo $message;
     }
-    ?>
+?>
 
     <form id="register" method="post" action="/phpmotors/accounts/index.php">
         <fieldset><legend>All Fields Are Required!</legend>

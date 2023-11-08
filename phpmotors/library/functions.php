@@ -1,5 +1,9 @@
 <?php 
 
+/************************
+* VIEW CONTENT BUILDERS *
+************************/
+
 // BUILD NAVIGATION LIST FOR HEADER NAV
 function buildList($classifications) {
 $navList = '<ul class="nav">';
@@ -32,6 +36,10 @@ function buildClassificationList($classifications){
     $classificationList .= '</select>'; 
     return $classificationList; 
    }
+   
+/*************************
+* FORM VALIDATION CHECKS *
+*************************/
 
 // USE BUILT-IN FUNCTION TO TEST FOR VALID EMAIL STRUCTURE
 function checkEmail($clientEmail) {
@@ -61,5 +69,11 @@ function checkLength($testWord){
     $pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?:.{1,30})$/';
     return preg_match($pattern, $testWord);
 }
+
+/****************************
+* SIGN-IN/SESSION FUNCTIONS *
+****************************/
+
+//
 
 ?>

@@ -1,4 +1,10 @@
-<?php $pageTitle = "Admin - vehicle management landing page || PHP Motors, inc.";
+<?php 
+
+if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
+    header ('Location: /phpmotors/');
+}
+
+$pageTitle = "Admin - vehicle management landing page || PHP Motors, inc.";
     include_once 'header.php'; 
 ?>
 

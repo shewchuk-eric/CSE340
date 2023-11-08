@@ -5,16 +5,19 @@
 <section class='form-container'>
 
 <?php
-    if(isset($message)) {
+    if(isset($_SESSION['message'])) {
+        $message = "<span class='message'>";
+        $message .= $_SESSION['message'];
+        $message .="</span>";
         echo $message;
     }
-    ?>
+?>
 
     <form id='login' action="/phpmotors/accounts/index.php" method="post">
         <fieldset><legend>Returning Users</legend>
         <div class="form-field input-right">
             <label for="clientEmail">Email</label>
-            <input name="clientEmail" id="clientEmail" type="email" <?php if (isset($clientEmail)) { echo "value='$clientEmail'";} ?> required>
+            <input name="clientEmail" id="clientEmail" type="email" <?php if (isset($clientEmail)) {echo "value='$clientEmail'";} ?> required>
         </div>
         <div class="form-field input-right">
             <label for="clientPassword">Password</label>

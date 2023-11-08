@@ -1,14 +1,23 @@
-<?php $pageTitle = "Admin - create a new vehicle classification || PHP Motors, inc.";
+<?php 
+
+if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
+    header ('Location: /phpmotors/');
+}
+
+$pageTitle = "Admin - create a new vehicle classification || PHP Motors, inc.";
     include_once 'header.php'; ?>
 
 <h1 id='form-title'>Manage Vehicle Classifications</h1>
 <section class='form-container'>
 
 <?php
-    if(isset($message)) {
+    if(isset($_SESSION['message'])) {
+        $message = "<span class='message'>";
+        $message .= $_SESSION['message'];
+        $message .="</span>";
         echo $message;
     }
-    ?>
+?>
 
     <form id='addNewClass' action="/phpmotors/vehicles/index.php" method="post">
         <fieldset><legend>Vehicle Classifications</legend>

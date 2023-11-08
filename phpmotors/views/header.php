@@ -12,7 +12,13 @@
 <body>
 <header>
     <img src="http://localhost:3000/phpmotors/images/logo.png" alt="image of PHP Motors logo">
-    <span id="account"><a href='/phpmotors/accounts/index.php?action=login' title='Returning User Login'>My Account</a></span>
+    <?php if(isset($_SESSION['clientData'])) {
+        $welcome = "<span class='account'><a href='/phpmotors/accounts/index.php' title='Logged in user first name'>Welcome  ";
+        $welcome .= $_SESSION['clientData']['clientFirstname'];
+        $welcome .= "</a> |</span><span class='account'><a href='/phpmotors/accounts/index.php?action=destroy' title='User Log Out'>Log Out</a></span>";
+        echo $welcome;
+    } else {
+        echo "<span class='account'><a href='/phpmotors/accounts/index.php?action=login' title='Returning User Login'>My Account</a></span>";} ?>
     <?php echo $navList; ?>
 </header>
     <main>
