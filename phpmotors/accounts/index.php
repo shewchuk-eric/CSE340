@@ -95,6 +95,76 @@ $action = filter_input(INPUT_POST, 'action');
         session_destroy();
         header ('Location: /phpmotors/index.php'); 
         break;
+
+    case 'update':
+        include '../views/user-update.php';
+        break;
+
+    case 'accountUpdate':
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS)); // get form values and make sure they're clean
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $userId = trim(filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_NUMBER_INT));
+
+        if($clientEmail != $_SESSION['clientData']['clientEmail']){
+            $existingEmail = checkUniqueEmail($clientEmail); // check if email/username already exists in database
+            if($existingEmail) {
+                $_SESSION['message'] = 'The email address you entered already exists.  Please select another?';
+                include '../views/user-update.php';
+                exit;
+            }
+        }
+
+        $clientEmail = checkEmail($clientEmail); // call function to validate for correct email format
+
+        if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) { // check for any empty lines in form
+            $_SESSION['message'] = 'Please provide information for all empty form fields.';
+            include '../views/registration.php'; // empty field is found - show error message
+            exit;
+        }
+       
+        $updateOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $userId); // all fields populated - send to update function in 'accounts-model.php'
+        if ($updateOutcome === 1) {
+            $_SESSION['message'] = "Your account data has been updated.";
+            $clientData = getClient($clientEmail);
+            array_pop($clientData); // remove $clientPassword from the array - no longer needed
+            $_SESSION['clientData']= $clientData;
+            header('Location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $_SESSION['message'] = "Sorry $clientFirstname, but the update failed. Please try again.";
+            include '../views/user-update.php';
+            exit;
+          }
+        break;
+
+    case 'passUpdate':
+        $userId = trim(filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_NUMBER_INT));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+        $checkPassword = checkPassword($clientPassword); // call function to validate for correct password format
+
+        if(empty($checkPassword)) { // check for any empty lines in form
+            $_SESSION['message'] = 'Please provide a valid password.';
+            include '../views/user-update.php'; // empty field is found - show error message
+            exit;
+        }
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+        $passChange = updatePass($userId, $hashedPassword); // all fields populated - send to insert function in 'accounts-model.php'
+        if ($passChange === 1) {
+            $_SESSION['message'] = "Your password has been updated.";
+            $clientData = getClient($_SESSION['clientData']['clientEmail']);
+            array_pop($clientData); // remove $clientPassword from the array - no longer needed
+            $_SESSION['clientData']= $clientData;
+            header('Location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $_SESSION['message'] = "Sorry $clientFirstname, but the update failed. Please try again.";
+            include '../views/user-update.php';
+            exit;
+          }
+        break;
     
     default:
         include '../views/admin.php';

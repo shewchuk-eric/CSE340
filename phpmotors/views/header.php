@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Eric Shewchuk">
     <meta name="description" content="CSE340 - Web Backend Development for Eric Shewchuk.  This is the PHP Motors assignment">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="http://localhost:3000/phpmotors/images/favicon.ico" type="image/x-icon">
     <title><?php echo($pageTitle);?></title>
     <link rel="stylesheet" href="http://localhost:3000/phpmotors/styles/motors.css">
 </head>

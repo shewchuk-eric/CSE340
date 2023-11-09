@@ -91,6 +91,79 @@ $action = filter_input(INPUT_POST, 'action');
           }
         break;
 
+    case 'modify': // admin user has selected the 'modify' link for a specific vehicle on the 'vehicles-default.php' view
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT); // information comes from clicking an <a> instead of form submit - therefore, must be get instead of post
+        $invInfo = getInvItemInfo($invId); // query DB for information on vehicle with $invId
+        if(count($invInfo)<1){
+        $message = 'Sorry, no vehicle information could be found.';
+        }
+        include '../views/vehicles-update.php';
+        exit;
+        break;
+
+    case 'updateVehicle': // admin user has altered values for a vehicle that exists in the DB -> enter those changes into DB
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS)); // get form values and make sure they're clean
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_INT));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $classificationId = trim(filter_input(INPUT_POST, 'classes', FILTER_SANITIZE_NUMBER_INT));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        $invImage = cleanFileName($invImage);
+        $invThumbnail = cleanFileName($invThumbnail);
+
+        if(empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) { // check for any empty lines in form
+            $message = "<p>Please provide information for all empty form fields.</p>";
+            include '../views/vehicles-update.php'; // empty field is found - show error message
+            exit;
+        }
+        $updateResult = updateVehicle($invId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId); // all fields populated - send to insert function in 'accounts-model.php'
+        if ($updateResult === 1) {
+            $message = "<p>$invMake $invModel has been updated in the vehicle inventory.</p>";
+            $_SESSION['message'] = $message;
+            header ('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p>$invMake $invModel cannot be updated at this time. Please try again.</p>";
+            $_SESSION['message'] = $message;
+            include '../views/vehicles-update.php';
+            exit;
+          }
+        break;
+
+    case 'delete': // admin user has selected the 'delete' link for a specific vehicle on the 'vehicles-default.php' view
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT); // information comes from clicking an <a> instead of form submit - therefore, must be get instead of post
+        $invInfo = getInvItemInfo($invId); // query DB for information on vehicle with $invId
+        if(count($invInfo)<1){
+        $message = 'Sorry, no vehicle information could be found.';
+        }
+        include '../views/vehicles-delete.php';
+        exit;
+        break;
+
+    case 'deleteVehicle':
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_FULL_SPECIAL_CHARS)); // get form values and make sure they're clean
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        $deleteResult = deleteVehicle($invId);
+        if ($deleteResult === 1) {
+            $message = "<p>$invMake $invModel has been deleted from the vehicle inventory.</p>";
+            $_SESSION['message'] = $message;
+            header ('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p>$invMake $invModel cannot be deleted at this time. Please try again.</p>";
+            $_SESSION['message'] = $message;
+            header ('location: /phpmotors/vehicles/');
+            exit;
+          }
+        break;
+
     default: // Houston, we have a problem
         echo 'Switch not working';
         break;

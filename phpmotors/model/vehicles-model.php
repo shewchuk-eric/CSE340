@@ -43,4 +43,49 @@ function getInventoryByClassification($classificationId) {
     $stmt->closeCursor(); 
     return $inventory; 
 }
+
+// RETURN INFORMATION FOR A SPECIFIC VEHICLE WHEN ADMIN USER SELECTS 'MODIFY' LINK FROM VEHICLE MANAGEMENT VIEW
+function getInvItemInfo($invId) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $invInfo;
+}
+
+// UPDATE AN EXISTING VEHICLE IN THE DB
+function updateVehicle($invId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId) { // add a new vehicle to the inventory in database
+    $db = phpmotorsConnect(); // Create a connection object
+    $sql = 'UPDATE inventory SET invMake = :invMake, invModel = :invModel, invDescription = :invDescription, invImage = :invImage, invThumbnail = :invThumbnail, invPrice = :invPrice, invStock = :invStock, invColor = :invColor, classificationId = :classificationId WHERE invId = :invId'; // The SQL query with placeholders for insert values
+    $stmt = $db->prepare($sql); // Prepare the statement
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR); // Tells database what type of information is being sent
+    $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
+    $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
+    $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
+    $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
+    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
+    $stmt->bindValue(':invStock', $invStock, PDO::PARAM_INT);
+    $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
+    $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_INT);
+    $stmt->execute(); // Run the query
+    $rowsChanged = $stmt->rowCount(); // Ask how many rows were affected by query
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
+
+function deleteVehicle($invId) {
+    $db = phpmotorsConnect(); // Create a connection object
+    $sql = 'DELETE FROM inventory WHERE invId = :invId'; // The SQL query with placeholders for insert values
+    $stmt = $db->prepare($sql); // Prepare the statement
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute(); // Run the query
+    $rowsChanged = $stmt->rowCount(); // Ask how many rows were affected by query
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
+
 ?>

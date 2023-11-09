@@ -4,7 +4,7 @@ if(!$_SESSION['loggedin']) {
     header ('Location: /phpmotors/');
 }
 
-$pageTitle = "You are logged in to Admin || PHP Motors, inc.";
+$pageTitle = "You are logged in to Admin | PHP Motors, inc.";
     include_once 'header.php'; ?>
 
 <h1 id='form-title'><?php echo $_SESSION['clientData']['clientFirstname']; echo $_SESSION['clientData']['clientLastname'];?></h1>
@@ -25,8 +25,14 @@ $pageTitle = "You are logged in to Admin || PHP Motors, inc.";
     <li>Email: <?php echo $_SESSION['clientData']['clientEmail'];?></li>
 </ul>
 
+<section class="message">
+    <h3>Account Management</h3>
+        <p>Use the following link to update account information:<br><a href="/phpmotors/accounts/index.php?action=update">Update Account Information</a>
+    </p>
+</section>
+
 <?php if($_SESSION['clientData']['clientLevel'] > 1) {
-    echo "<section class='message'><h3>Inventory Management</h3><p>Use the following link to manage inventory<br><a href='/phpmotors/vehicles/index.php?action=default'>Vehicle Management</a></p></section>";
+    echo "<section class='message'><h3>Inventory Management</h3><p>Use the following link to manage inventory:<br><a href='/phpmotors/vehicles/index.php?action=default'>Vehicle Management</a></p></section>";
 }?>
 
 </section>

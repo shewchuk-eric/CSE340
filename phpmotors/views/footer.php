@@ -6,6 +6,6 @@
         <p>Last Updated: <span id="modified"></span></p>
         </section>
     </footer>
-    <script src="scripts/motors.js"></script>   
+    <script src="../scripts/motors.js"></script>   
 </body>
 </html>
