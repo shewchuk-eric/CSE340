@@ -92,6 +92,7 @@ $action = filter_input(INPUT_POST, 'action');
 
     case 'destroy':
         unset($_SESSION['clientData']);
+        unset($_SESSION['loggedin']);
         session_destroy();
         header ('Location: /phpmotors/index.php'); 
         break;
@@ -118,8 +119,8 @@ $action = filter_input(INPUT_POST, 'action');
         $clientEmail = checkEmail($clientEmail); // call function to validate for correct email format
 
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) { // check for any empty lines in form
-            $_SESSION['message'] = 'Please provide information for all empty form fields.';
-            include '../views/registration.php'; // empty field is found - show error message
+            $_SESSION['message'] = 'Please provide valid information for all form fields.';
+            include '../views/user-update.php'; // empty field is found - show error message
             exit;
         }
        

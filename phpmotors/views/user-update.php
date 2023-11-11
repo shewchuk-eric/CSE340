@@ -59,7 +59,7 @@
         </fieldset>
     </form>
 </section>
-<script src="../scripts/expand.js">
+<script src="../scripts/expand.js"></script>
     <?php unset($_SESSION['message']); ?>
     <?php unset($_SESSION['message1']); ?>
 <?php include_once 'footer.php'; ?>

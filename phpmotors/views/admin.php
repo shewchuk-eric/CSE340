@@ -7,7 +7,7 @@ if(!$_SESSION['loggedin']) {
 $pageTitle = "You are logged in to Admin | PHP Motors, inc.";
     include_once 'header.php'; ?>
 
-<h1 id='form-title'><?php echo $_SESSION['clientData']['clientFirstname']; echo $_SESSION['clientData']['clientLastname'];?></h1>
+<h1 id='form-title'><?php echo $_SESSION['clientData']['clientFirstname'].' '; echo $_SESSION['clientData']['clientLastname'];?></h1>
 <section class='form-container'>
 
 <?php
