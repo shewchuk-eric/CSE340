@@ -32,7 +32,7 @@ $pageTitle = "You are logged in to Admin | PHP Motors, inc.";
 </section>
 
 <?php if($_SESSION['clientData']['clientLevel'] > 1) {
-    echo "<section class='message'><h3>Inventory Management</h3><p>Use the following link to manage inventory:<br><a href='/phpmotors/vehicles/index.php?action=default'>Vehicle Management</a></p></section>";
+    echo "<section class='message'><h3>Inventory Management</h3><p>Use the following link to manage inventory:<br><a href='/phpmotors/vehicles/index.php?action=first'>Vehicle Management</a></p></section>";
 }?>
 
 </section>
