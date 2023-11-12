@@ -32,7 +32,7 @@ function addNewVehicle($invMake, $invModel, $invDescription, $invImage, $invThum
     return $rowsChanged;
 }
 
-// FIND AND RETURN VEHICLES THAT MATCH THE CLASSIFICATION SELECTED IN VEHICLE ADMIN VIEW
+// FIND AND RETURN VEHICLES THAT MATCH THE CLASSIFICATION ID SELECTED IN VEHICLE ADMIN VIEW
 function getInventoryByClassification($classificationId) {
     $db = phpmotorsConnect(); 
     $sql = 'SELECT * FROM inventory WHERE classificationId = :classificationId'; 
@@ -77,6 +77,7 @@ function updateVehicle($invId, $invMake, $invModel, $invDescription, $invImage, 
     return $rowsChanged;
 }
 
+// DELETE A VEHICLE SELECTED IN THE ADMIN MANAGEMENT VIEW
 function deleteVehicle($invId) {
     $db = phpmotorsConnect(); // Create a connection object
     $sql = 'DELETE FROM inventory WHERE invId = :invId'; // The SQL query with placeholders for insert values
@@ -86,6 +87,33 @@ function deleteVehicle($invId) {
     $rowsChanged = $stmt->rowCount(); // Ask how many rows were affected by query
     $stmt->closeCursor();
     return $rowsChanged;
+}
+
+// GET A LIST OF VEHICLES FROM A CATEGORY AS SELECTED IN THE NAVIGATION LINKS
+function getVehiclesByClassification($classificationName) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->execute();
+    $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicles;
+}
+
+// BUILD THE LIST OF VEHICLES TO SHOW USER WHEN A NAVIGATION BAR LINK IS SELECTED
+function buildVehiclesDisplay($vehicles) {
+    $dv = '<ul id="inv-display">';
+    foreach ($vehicles as $vehicle) {
+        $dv .= '<li>';
+        $dv .= "<img src='$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+        $dv .= '<hr>';
+        $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+        $dv .= "<span>$$vehicle[invPrice]</span>";
+        $dv .= '</li>';
+    }
+    $dv .= '</ul>';
+    return $dv;
 }
 
 ?>

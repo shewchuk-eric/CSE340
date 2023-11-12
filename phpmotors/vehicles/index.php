@@ -14,7 +14,7 @@ $action = filter_input(INPUT_POST, 'action');
  if ($action == NULL){
   $action = filter_input(INPUT_GET, 'action');
   if ($action == NULL){
-    $action = 'default';
+    $action = 'first';
   }
  }
 
@@ -26,7 +26,7 @@ $action = filter_input(INPUT_POST, 'action');
         echo json_encode($inventoryArray); // *** echo must be used as a version of 'return' when working with JSON!!!
         break;
 
-    case 'default': // first time to vehicle management section - shows options
+    case 'first': // first time to vehicle management section - shows options
         $classificationList = buildClassificationList($classifications);
         include '../views/vehicles-default.php';
         break;
@@ -162,6 +162,17 @@ $action = filter_input(INPUT_POST, 'action');
             header ('location: /phpmotors/vehicles/');
             exit;
           }
+        break;
+
+    case 'listCars':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+        if(!count($vehicles)){
+        $_SESSION['message'] = "Sorry, $classificationName currently has no vehicles listed.";
+        } else {
+        $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+        include '../views/classification.php';
         break;
 
     default: // Houston, we have a problem

@@ -48,5 +48,5 @@ if(isset($invInfo['invMake'])){ // use information on vehicle to populate the pa
         </fieldset>
     </form>
 </section>
-
+<?php unset($_SESSION['message']); ?>
 <?php include_once 'footer.php'; ?>
