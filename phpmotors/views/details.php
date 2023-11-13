@@ -1,11 +1,10 @@
 <?php
 
 // set page title and call header
-    $pageTitle = "View our $classificationName vehicles inventory | PHP Motors, Inc."; // use information from controller to create title
+    $pageTitle = "$details[invMake] $details[invModel] | PHP Motors, Inc."; // use information from controller to create title
     include_once 'header.php'; ?>
 
-<section id='cards'>
-    <h1><?php echo $classificationName; ?> vehicles</h1>
+<section id='details'>
 
 <?php
     if(isset($_SESSION['message'])) {
@@ -16,7 +15,7 @@
     }
 ?>
 
-<?php if(isset($vehicleDisplay)) {echo $vehicleDisplay;} ?>
+<?php if(isset($detailsDisplay)) {echo $detailsDisplay;} ?>
 
 </section>
 

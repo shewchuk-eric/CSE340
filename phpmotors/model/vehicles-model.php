@@ -44,7 +44,7 @@ function getInventoryByClassification($classificationId) {
     return $inventory; 
 }
 
-// RETURN INFORMATION FOR A SPECIFIC VEHICLE WHEN ADMIN USER SELECTS 'MODIFY' LINK FROM VEHICLE MANAGEMENT VIEW
+// RETURN INFORMATION FOR A SPECIFIC VEHICLE - USED BY 'VEHICLES-UPDATE.PHP' AND 'DETAILS.PHP'
 function getInvItemInfo($invId) {
     $db = phpmotorsConnect();
     $sql = 'SELECT * FROM inventory WHERE invId = :invId';
@@ -106,13 +106,27 @@ function buildVehiclesDisplay($vehicles) {
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
         $dv .= '<li>';
+        $dv .= "<a href='/phpmotors/vehicles?action=vehicleDetails&invId=$vehicle[invId]'>";
         $dv .= "<img src='/phpmotors/images/vehicles/$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= '<hr>';
         $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
         $dv .= "<span>$$vehicle[invPrice]</span>";
+        $dv .= "<button type='button'>View Details</button></a>";
         $dv .= '</li>';
     }
     $dv .= '</ul>';
+    return $dv;
+}
+
+// BUILD VIEW CONTENT FOR INDIVIDUAL VEHICLE DETAILS FOR DISPLAY ON 'DETAILS.PHP'
+function buildVehicleDetails($details) {
+    $price = number_format($details['invPrice']);
+    $dv = '<article id="vehicleDisplay">';
+    $dv .= "<h1>$details[invMake] $details[invModel]";
+    $dv .= "<h3>$price.00";
+    $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com'>";
+    $dv .= "<p>$details[invDescription]</p>";
+    $dv .= '</article>';
     return $dv;
 }
 

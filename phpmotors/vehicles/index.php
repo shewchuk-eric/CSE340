@@ -175,6 +175,18 @@ $action = filter_input(INPUT_POST, 'action');
         include '../views/classification.php';
         break;
 
+    case 'vehicleDetails':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
+        $details = getInvItemInfo($invId);
+        if(!count($details)){
+        $_SESSION['message'] = "Sorry, we could not get the details.";
+        include '../views/classification.php';
+        } else {
+        $detailsDisplay = buildVehicleDetails($details);
+        }
+        include '../views/details.php';
+        break;
+
     default: // Houston, we have a problem
         echo 'Switch not working';
         break;
