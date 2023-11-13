@@ -170,7 +170,7 @@ $action = filter_input(INPUT_POST, 'action');
         if(!count($vehicles)){
         $_SESSION['message'] = "Sorry, $classificationName currently has no vehicles listed.";
         } else {
-        $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        $vehicleDisplay = buildVehiclesDisplay($vehicles, $classificationName);
         }
         include '../views/classification.php';
         break;

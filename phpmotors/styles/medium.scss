@@ -73,3 +73,19 @@
         font-size: 1.2em;
     }
 }
+
+@media (min-width: 680px) {
+    #vehicleDisplay {
+        width: 95%;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        & img {
+        grid-column: 2/3;
+        margin: 4rem 0 3rem 1rem;
+        }
+    }
+
+    #text {
+        grid-column: 1/2;
+    }
+}

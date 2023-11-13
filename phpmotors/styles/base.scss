@@ -7,14 +7,14 @@
 
 // sass --watch phpmotors/styles/base.scss:phpmotors/styles/motors.css
 
-// import form styles
-@import 'form';
-
 // create variables
 $dark: #2f5d85;
 $light: #4c96d7;
 $text: #3a3a3a;
 $accent: #a6cbeb;
+
+// import form styles
+@import 'form';
 
 /**************
 * Base Styles *
@@ -102,7 +102,7 @@ main {
     max-width: 100%;
 }
 
-button {
+button, .button {
     background-color: $accent;
     border: 1px solid $text;
     color: $text;
@@ -204,6 +204,62 @@ footer {
     #four-p {
         grid-area: 4/2/5/3;
     }
+
+    #cards-container { // styles for classification.php view
+        grid-column: 1/-1;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    #display-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .inv-display {
+        width: 250px;
+        border: 3px solid $dark;
+        display: inline-block;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        & a {
+            text-decoration: none;
+            color: $dark;
+        }
+        & button {
+            margin: 0 auto .5rem auto;
+        }
+        & img {
+            width: 200px;
+            height: auto;
+            margin: 0 auto 0 auto;
+        }
+    }
+
+    #details {
+        grid-column: 1/-1;
+    }
+
+    #details {
+        width: 85%;
+        margin: 0 auto;
+        & img {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        & h1 {
+            font-size: 2.5rem;
+        }
+        & h3 {
+            font-size: 1.5rem;
+        }
+        & p {
+            font-size: 1rem;
+        }
+    }
+
 
     @import 'medium';
     @import 'large';

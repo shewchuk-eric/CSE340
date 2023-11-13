@@ -4,9 +4,6 @@
     $pageTitle = "View our $classificationName vehicles inventory | PHP Motors, Inc."; // use information from controller to create title
     include_once 'header.php'; ?>
 
-<section id='cards'>
-    <h1><?php echo $classificationName; ?> vehicles</h1>
-
 <?php
     if(isset($_SESSION['message'])) {
         $message = "<span class='message'>";
@@ -18,7 +15,7 @@
 
 <?php if(isset($vehicleDisplay)) {echo $vehicleDisplay;} ?>
 
-</section>
+<!-- </section> -->
 
 <?php unset($_SESSION['message']); ?>
 

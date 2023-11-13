@@ -4,6 +4,7 @@
 * PHP Motors assignment *
 ************************/
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+/* Styles specific to forms and tables */
 #form-title {
   grid-area: 1/1/2/5;
   margin-left: 1em;
@@ -243,7 +244,7 @@ main {
   max-width: 100%;
 }
 
-button {
+button, .button {
   background-color: #a6cbeb;
   border: 1px solid #3a3a3a;
   color: #3a3a3a;
@@ -346,6 +347,61 @@ footer {
   grid-area: 4/2/5/3;
 }
 
+#cards-container {
+  grid-column: 1/-1;
+  width: 95%;
+  margin: 0 auto;
+}
+
+#display-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.inv-display {
+  width: 250px;
+  border: 3px solid #2f5d85;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.inv-display a {
+  text-decoration: none;
+  color: #2f5d85;
+}
+.inv-display button {
+  margin: 0 auto 0.5rem auto;
+}
+.inv-display img {
+  width: 200px;
+  height: auto;
+  margin: 0 auto 0 auto;
+}
+
+#details {
+  grid-column: 1/-1;
+}
+
+#details {
+  width: 85%;
+  margin: 0 auto;
+}
+#details img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+#details h1 {
+  font-size: 2.5rem;
+}
+#details h3 {
+  font-size: 1.5rem;
+}
+#details p {
+  font-size: 1rem;
+}
+
 @media screen and (min-width: 551px) and (max-width: 850px) {
   #name {
     grid-row: 2;
@@ -404,6 +460,20 @@ footer {
   }
   .button a {
     font-size: 1.2em;
+  }
+}
+@media (min-width: 680px) {
+  #vehicleDisplay {
+    width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  #vehicleDisplay img {
+    grid-column: 2/3;
+    margin: 4rem 0 3rem 1rem;
+  }
+  #text {
+    grid-column: 1/2;
   }
 }
 @media screen and (min-width: 851px) {

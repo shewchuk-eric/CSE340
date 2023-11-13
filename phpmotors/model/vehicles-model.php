@@ -102,31 +102,37 @@ function getVehiclesByClassification($classificationName) {
 }
 
 // BUILD THE LIST OF VEHICLES TO SHOW USER WHEN A NAVIGATION BAR LINK IS SELECTED
-function buildVehiclesDisplay($vehicles) {
-    $dv = '<ul id="inv-display">';
+function buildVehiclesDisplay($vehicles, $classificationName) {
+    $dv = '<div id="cards-container">';
+    $dv .= "<h1>$classificationName vehicles</h1>";
+    $dv .= '<div id="display-box">';
     foreach ($vehicles as $vehicle) {
-        $dv .= '<li>';
+        $price = number_format($vehicle['invPrice']);
+        $dv .= '<section class="inv-display">';
         $dv .= "<a href='/phpmotors/vehicles?action=vehicleDetails&invId=$vehicle[invId]'>";
         $dv .= "<img src='/phpmotors/images/vehicles/$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= '<hr>';
-        $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
-        $dv .= "<span>$$vehicle[invPrice]</span>";
-        $dv .= "<button type='button'>View Details</button></a>";
-        $dv .= '</li>';
+        $dv .= "<h3>$vehicle[invMake] $vehicle[invModel]</h3>";
+        $dv .= "<span>$$price</span><br>";
+        $dv .= "<div class='button'>View Details</div></a>";
+        $dv .= '</section>';
     }
-    $dv .= '</ul>';
+    $dv .= '</div>'; // end of 'cards-container'
+    $dv .= '</div>'; // end of 'display-box'
     return $dv;
 }
 
 // BUILD VIEW CONTENT FOR INDIVIDUAL VEHICLE DETAILS FOR DISPLAY ON 'DETAILS.PHP'
 function buildVehicleDetails($details) {
     $price = number_format($details['invPrice']);
-    $dv = '<article id="vehicleDisplay">';
-    $dv .= "<h1>$details[invMake] $details[invModel]";
-    $dv .= "<h3>$price.00";
-    $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com'>";
+    $dv = "<div id='vehicleDisplay'>";
+    $dv .= "<article id='text'>";
+    $dv .= "<h1>$details[invMake] $details[invModel]</h1>";
+    $dv .= "<h3>$$price.00</h3>";
     $dv .= "<p>$details[invDescription]</p>";
-    $dv .= '</article>';
+    $dv .= "</article>";
+    $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
+    $dv .= "</div>";
     return $dv;
 }
 
