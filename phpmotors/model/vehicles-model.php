@@ -128,7 +128,7 @@ function buildVehicleDetails($details) {
     $dv = "<div id='vehicleDisplay'>";
     $dv .= "<article id='text'>";
     $dv .= "<h1>$details[invMake] $details[invModel]</h1>";
-    $dv .= "<h3>$$price.00</h3>";
+    $dv .= "<h3>$$price</h3>";
     $dv .= "<p>$details[invDescription]</p>";
     $dv .= "</article>";
     $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
