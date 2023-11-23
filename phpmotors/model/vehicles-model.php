@@ -136,4 +136,15 @@ function buildVehicleDetails($details) {
     return $dv;
 }
 
+// GET INFORMATION ABOUT ALL VEHICLES IN INVENTORY FOR 'UPLOADS/INDEX.PHP'
+function getVehicles(){
+	$db = phpmotorsConnect();
+	$sql = 'SELECT invId, invMake, invModel FROM inventory';
+	$stmt = $db->prepare($sql);
+	$stmt->execute();
+	$invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$stmt->closeCursor();
+	return $invInfo;
+}
+
 ?>
