@@ -16,7 +16,7 @@ if ($action == NULL) {
 }
 
 // create variables for use with image uploads
-$image_dir = '/phpmotors/uploads/images'; // directory name where uploaded images are stored
+$image_dir = '/phpmotors/images/vehicles'; // directory name where uploaded images are stored
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir; // The path is the full path from the server root
 
 switch ($action) {
