@@ -15,11 +15,16 @@
 
 form {
 	max-width:80%;
-	margin: auto;
+	margin: 0 auto 2rem auto;
 	padding:2em;
 	background:#fff;
 	border-radius:0.25em;
 	box-shadow:0 0 2em rgba(0,0,0,0.2)
+}
+
+fieldset {
+	margin-bottom: 1.5rem;
+	padding: 1.5rem;
 }
 
 legend, td {
@@ -85,6 +90,7 @@ select:focus {
 input[type="submit"] {
 	flex:0 1 20%;
 	padding:0.5em;
+	margin-top: 1rem;
 	font-size:1rem;
 	font-family:inherit;
 	text-shadow: 0 1px 0 #fff;
@@ -93,7 +99,7 @@ input[type="submit"] {
 	border:0;
 	transition:0.3s;
 	cursor:pointer;
-	width: 20em;
+	max-width: 20em;
 }
 
 input[type="submit"]:hover {
@@ -148,4 +154,75 @@ input:required:valid {
 @keyframes colorChange {
 	from {color: white;}
 	to {color: red;}
+}
+
+.container {
+	position: relative;
+}
+
+.radio input, .radio label {
+	position: relative;
+	left: 2rem;
+	display: block;
+}
+
+/*********************************** RADIO BUTTONS SPECIFIC STYLES ***************************************/
+.pImage {
+	display: flex;
+	gap: 10px;
+	justify-content: flex-start;
+	margin: 10px;
+	position: relative;
+	align-items: center;
+	color: $dark;
+}
+  
+.pImage input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+}
+  
+.radio {
+	position: relative;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: $border;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+	transform: translateZ(-25px);
+	transition: all 0.3s ease-in-out;
+}
+  
+.radio::before {
+	position: absolute;
+	content: '';
+	width: 10px;
+	height: 10px;
+	top: 7px;
+	left: 7px;
+	border-radius: 50%;
+	background-color: $dark;
+	box-shadow: 0px 0px 10px rgba(36, 105, 105, 0.5);
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+}
+  
+.pImage input[type="radio"]:checked + .radio {
+	border-color: $light;
+	transform: translateZ(0px);
+	background-color: #fff;
+}
+  
+.pImage input[type="radio"]:checked + .radio::before {
+	opacity: 1;
+}
+  
+/*********************************** IMAGE DISPLAY ('IMAGE-ADMIN.PHP') SPECIFIC STYLES ***************************************/
+#image-display li {
+	list-style: none;
+	& img {
+		max-width: 90%;
+		height: auto;
+	}
 }

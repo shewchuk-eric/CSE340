@@ -12,6 +12,10 @@ $dark: #2f5d85;
 $light: #4c96d7;
 $text: #3a3a3a;
 $accent: #a6cbeb;
+$width: 3px;
+$border: $width solid $dark;
+$toggle: 2rem 2.2rem;
+$radius: 4rem;
 
 // import form styles
 @import 'form';

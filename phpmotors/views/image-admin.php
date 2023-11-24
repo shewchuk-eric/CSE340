@@ -24,20 +24,24 @@ $pageTitle = "Admin - manage vehicle image uploads || PHP Motors, inc.";
     <form id='addNewClass' action="/phpmotors/uploads/index.php" method="post" enctype="multipart/form-data">
         <fieldset><legend>Add New Vehicle Image</legend>
         <div class="form-field input-right">
-            <label for="invItem">Vehicle</label>
-                <?php echo $prodSelect; ?>
+            <?php echo $prodSelect; ?>
         </div>
         </fieldset>
         <fieldset><legend>Is this the main image for the vehicle?</legend>
-            <label for="priYes" class="pImage">Yes</label>
-            <input type="radio" name="imgPrimary" id="priYes" class="pImage" value="1">
-            <label for="priNo" class="pImage">No</label>
-            <input type="radio" name="imgPrimary" id="priNo" class="pImage" checked value="0">
+                <label class="pImage">
+                    <input type="radio" name="imgPrimary" id="priYes" class="pImage" value="1">
+                    <span class="radio"></span>
+                    Yes</label>
+                <label class="pImage">
+                    <input type="radio" name="imgPrimary" id="priNo" class="pImage" checked value="0">
+                    <span class="radio"></span>
+                    No</label>   
 	    </fieldset>
-        <label>Upload Image:</label>
-        <input type="file" name="file1">
-        <input type="submit" class="regbtn" value="Upload">
-        <input type="hidden" name="action" value="upload">
+        <fieldset><legend>Upload Image:</legend>
+            <input type="file" name="file1">
+            <input type="submit" class="regbtn" value="Upload">
+            <input type="hidden" name="action" value="upload">
+        </fieldset>
     </form>
     <hr>
     <h2>Existing Images</h2>
