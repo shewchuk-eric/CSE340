@@ -35,7 +35,7 @@ switch ($action) {
         $imgPath = uploadFile('file1'); // Upload the image, store the returned path to the file
         $result = storeImages($imgPath, $invId, $imgName, $imgPrimary); // Insert the image information to the database, get the result
         if ($result) {
-            $message = 'The upload succeeded.';
+            $message = "$imgName was uploaded.";
         } else {
             $message = 'Sorry, the upload failed.';
         }

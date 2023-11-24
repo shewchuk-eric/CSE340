@@ -59,7 +59,7 @@ $action = filter_input(INPUT_POST, 'action');
             exit;
         }
         $regOutcome = addNewVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId); // all fields populated - send to insert function in 'accounts-model.php'
-        if ($regOutcome === 1) {
+        if ($regOutcome == 1) {
             $message = "<p>$invMake $invModel has been added to the vehicle inventory.</p>";
             header ("location: ../views/vehicles-add-new.php"); // ? header ("location: ."); ?
             exit;
