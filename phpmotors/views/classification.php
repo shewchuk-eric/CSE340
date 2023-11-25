@@ -15,8 +15,6 @@
 
 <?php if(isset($vehicleDisplay)) {echo $vehicleDisplay;} ?>
 
-<!-- </section> -->
-
 <?php unset($_SESSION['message']); ?>
 
 <?php include_once 'footer.php'; ?>

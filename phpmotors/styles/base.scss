@@ -267,6 +267,8 @@ footer {
     #thumbs {
         display: flex;
         flex-grow: 1;
+        flex-wrap: wrap;
+        gap: .5rem;
         justify-content: space-around;
         margin-bottom: 1rem;
     }
@@ -277,7 +279,7 @@ footer {
         border: $border;
         transition: transform 1s;
             &:hover {
-                transform: scale(1.5, 1.5);
+                transform: scale(1.2, 1.2);
             }
     }
 

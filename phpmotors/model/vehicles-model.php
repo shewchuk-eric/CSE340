@@ -109,7 +109,7 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
     foreach ($vehicles as $vehicle) {
         $price = number_format($vehicle['invPrice']);
         $dv .= '<section class="inv-display">';
-        $dv .= "<a href='/phpmotors/vehicles?action=vehicleDetails&invId=$vehicle[invId]'>";
+        $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetails&invId=$vehicle[invId]'>";
         // $dv .= "<img src='/phpmotors/images/vehicles/$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= "<img src='$vehicle[imgPath]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= '<hr>';
