@@ -5,6 +5,7 @@ session_start(); // create or access a session - required at the top of ALL cont
 require_once '../library/connections.php'; // bring in DB connections ability
 require_once '../model/vehicles-model.php'; // contains functions to manage vehicle inventory 
 require_once '../library/functions.php'; // contains data validation functions
+require_once '../model/uploads-model.php'; // used to get thumbnail images for 'vehicleDetails' case
 
 $classifications = getClassList(); // get classifications from main-model.php
 $navList = buildList($classifications); // Build the navigation list using results from getClassifications()
@@ -182,7 +183,8 @@ $action = filter_input(INPUT_POST, 'action');
         $_SESSION['message'] = "Sorry, we could not get the details.";
         include '../views/classification.php';
         } else {
-        $detailsDisplay = buildVehicleDetails($details);
+            $thumbnails = getThumbs($invId);
+            $detailsDisplay = buildVehicleDetails($details, $thumbnails);
         }
         include '../views/details.php';
         break;

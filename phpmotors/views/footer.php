@@ -6,6 +6,12 @@
         <p>Last Updated: <span id="modified"></span></p>
         </section>
     </footer>
-    <script src="../scripts/motors.js"></script>   
+    <?php if ($pageTitle == "Welcome to PHP Motors, inc.") {
+        $source = "scripts/motors.js";
+    } else {
+            $source = '../scripts/motors.js';
+        } ?>
+
+    <script src="<?php echo $source ?>"></script>
 </body>
 </html>

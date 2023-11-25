@@ -5,7 +5,7 @@
 <h1 id="content-title">Welcome to PHP Motors!</h1>
 
     <p id="name"><span class="bold">DMC Delorean</span><br>3 Cup holders<br>Superman doors<br>Fuzzy dice!<br></p>
-    <span id="car"><img src="images/delorean.jpg" alt="image of a delorean sports car"></span>
+    <span id="car"><img src="images/vehicles/delorean-draw.jpg" alt="image of a delorean sports car"></span>
     <button type="button" id="button">Own Today</button>
 
     <h4 id="upgrades">Delorean Upgrades</h4>

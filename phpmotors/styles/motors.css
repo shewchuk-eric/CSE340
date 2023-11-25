@@ -479,6 +479,23 @@ footer {
   font-size: 1rem;
 }
 
+#thumbs {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.smallImage {
+  max-width: 75%;
+  height: auto;
+  border: 3px solid #2f5d85;
+  transition: transform 1s;
+}
+.smallImage:hover {
+  transform: scale(1.5, 1.5);
+}
+
 @media screen and (min-width: 551px) and (max-width: 850px) {
   #name {
     grid-row: 2;

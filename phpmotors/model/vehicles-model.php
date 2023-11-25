@@ -47,7 +47,7 @@ function getInventoryByClassification($classificationId) {
 // RETURN INFORMATION FOR A SPECIFIC VEHICLE - USED BY 'VEHICLES-UPDATE.PHP' AND 'DETAILS.PHP'
 function getInvItemInfo($invId) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+    $sql = 'SELECT *, imgPath FROM inventory i JOIN images p ON i.invId = p.invId WHERE i.invId = :invId AND p.imgPrimary = 1';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
@@ -92,7 +92,7 @@ function deleteVehicle($invId) {
 // GET A LIST OF VEHICLES FROM A CATEGORY AS SELECTED IN THE NAVIGATION LINKS
 function getVehiclesByClassification($classificationName) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $sql = 'SELECT *, imgPath FROM inventory i JOIN images p ON i.invId = p.invId WHERE imgPath LIKE "%-tn%" AND p.imgPrimary = 1 AND i.classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();
@@ -110,7 +110,8 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
         $price = number_format($vehicle['invPrice']);
         $dv .= '<section class="inv-display">';
         $dv .= "<a href='/phpmotors/vehicles?action=vehicleDetails&invId=$vehicle[invId]'>";
-        $dv .= "<img src='/phpmotors/images/vehicles/$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+        // $dv .= "<img src='/phpmotors/images/vehicles/$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+        $dv .= "<img src='$vehicle[imgPath]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= '<hr>';
         $dv .= "<h3>$vehicle[invMake] $vehicle[invModel]</h3>";
         $dv .= "<span>$$price</span><br>";
@@ -123,7 +124,7 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
 }
 
 // BUILD VIEW CONTENT FOR INDIVIDUAL VEHICLE DETAILS FOR DISPLAY ON 'DETAILS.PHP'
-function buildVehicleDetails($details) {
+function buildVehicleDetails($details, $thumbnails) {
     $price = number_format($details['invPrice']);
     $dv = "<div id='vehicleDisplay'>";
     $dv .= "<article id='text'>";
@@ -131,7 +132,16 @@ function buildVehicleDetails($details) {
     $dv .= "<h3>$$price</h3>";
     $dv .= "<p>$details[invDescription]</p>";
     $dv .= "</article>";
-    $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
+    // $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
+    $dv .= "<img src='$details[imgPath]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
+    $dv .= "</div>";
+    // build thumbnails div
+    $dv .= "<div id='thumbs'>";
+    $iter = 1;
+    foreach ($thumbnails as $thumb) {
+        $dv .= "<img src='$thumb[imgPath]' alt='$details[invMake] $details[invModel] thumbnail $iter on phpmotors.com' class='smallImage'>";
+        $iter ++;
+    }
     $dv .= "</div>";
     return $dv;
 }

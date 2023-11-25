@@ -264,6 +264,23 @@ footer {
         }
     }
 
+    #thumbs {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+    }
+
+    .smallImage {
+        max-width: 75%;
+        height: auto;
+        border: $border;
+        transition: transform 1s;
+            &:hover {
+                transform: scale(1.5, 1.5);
+            }
+    }
+
 
     @import 'medium';
     @import 'large';

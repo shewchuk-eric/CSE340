@@ -57,4 +57,15 @@ function checkExistingImage($imgName){ // Check for an existing image
     $stmt->closeCursor();
     return $imageMatch;
 }
+
+function getThumbs($invId) {
+    $db = phpmotorsConnect();
+    $sql = "SELECT imgPath FROM images WHERE invId = :invId AND imgName LIKE '%-tn%'";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_STR);
+    $stmt->execute();
+    $imageMatch = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $imageMatch;
+}
 ?>
