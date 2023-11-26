@@ -1,0 +1,31 @@
+/******************************************************
+* CSE340 Final Project styles - Author: Eric Shewchuk *
+******************************************************/
+
+// sass --watch final_project/styles/base.scss:final_project/styles/base.css
+// csso styles/base.css -o styles/final.min.css     *** output minified css to file - change link in page headers!!!
+
+// COMBINE CSS FILES
+@use 'normalize';
+
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
+// set global variables
+
+    $darkgreen: #343F3E;
+    $lightgreen: #505A5B;
+    $text: #1A1A1A;
+    $lightblue: #DCEDFF;
+    $gray: #8F91A2;
+    $darkblue: #94B0DA;
+
+    $border: 3px solid $lightgreen;
+    $center: 0 auto;
+
+/******************** end of normalize ********************/
+
+@import 'global';
+@import 'navigation';
+@import 'layouts';
+@import 'weather';
+@import 'form';
