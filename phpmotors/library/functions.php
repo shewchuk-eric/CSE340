@@ -198,4 +198,30 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
         }
     imagedestroy($old_image); // Free any memory associated with the old image
 }
+
+
+/********************************
+* MANAGE USER REVIEWS FUNCTIONS *
+********************************/
+
+function buildAuthorsList($authorList) {
+    $authorsList = '<select id="authors" name="authors">';
+    $authorsList .= "<option>Choose an author</option>";
+    foreach ($authorList as $author) {
+        $authorsList .="<option value='$author[clientId]'";
+        $authorsList .= ">$author[clientLastname], $author[clientLastname]</option>";
+    }
+    $authorsList .="</select>";
+    return $authorsList;
+}
+
+function buildReviewsDisplay($reviews) {
+    $list = '<form class="review">';
+    foreach ($reviews as $review) {
+        $list .= "<div class='form-field input-right'><label for='review'>$review[reviewDate]</label>";
+        $list .= "<textarea name='review' id='review' required>$review[reviewText]</textarea></div>";
+    }
+    $list .= '</form>';
+    return $list;
+}
 ?>

@@ -20,5 +20,4 @@
 </section>
 
 <?php unset($_SESSION['message']); ?>
-
 <?php include_once 'footer.php'; ?>

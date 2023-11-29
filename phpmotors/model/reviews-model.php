@@ -26,11 +26,32 @@ function getReviews($invId) { // Get reviews for a specific vehicle from reviews
     return $review;
 }
 
+function getAuthors() {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT DISTINCT clientFirstname, clientLastname clientId FROM reviews r JOIN clients c ON r.clientId = c.clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $authors = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $authors;
+}
+
 function getClientReviews($clientId) { // Get reviews uploaded by a specific client
     $db = phpmotorsConnect();
     $sql = 'SELECT reviewText, reviewDate FROM reviews WHERE clientId = :clientId';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $reviews;
+}
+
+function getVehicleReviews($invId) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT reviewText, reviewDate FROM reviews WHERE invId = :invId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
     $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();

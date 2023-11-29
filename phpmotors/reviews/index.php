@@ -6,18 +6,21 @@ session_start();
 require_once '../library/connections.php';
 require_once '../library/functions.php';
 require_once '../model/reviews-model.php';
+require_once '../model/vehicles-model.php';
 
 $classifications = getClassList();
 $navList = buildList($classifications);
+
+$authorList = getAuthors(); 
+$authorsList = buildAuthorsList($authorList);
+$vehicles = getVehicles();
+$vehiclesList = buildVehiclesSelect($vehicles);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if ($action == NULL) {
  $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
-// create variables for use with image uploads
-$image_dir = '/phpmotors/images/vehicles'; // directory name where uploaded images are stored
-$image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir; // The path is the full path from the server root
 
 switch ($action) {
     case 'addNewReview':
@@ -44,25 +47,59 @@ switch ($action) {
     header('location: .');
     break;
 
-    case 'editReview':
-    $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Get the image name and id
-    $imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);
-    $target = $image_dir_path . '/' . $filename; // Build the full path to the image to be deleted
+    case 'adminEdit':
+        // $authorList = getAuthors(); 
+        // $authorsList = buildAuthorsList($authorList);
+        // $vehicles = getVehicles();
+        // $vehiclesList = buildVehiclesSelect($vehicles);
+        include '../views/reviews-admin.php';
+        break;
+
+    case 'filterAuthor':
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_VALIDATE_INT);
         
-    if (file_exists($target)) { // Check that the file exists in that location
-        $result = unlink($target); // Deletes the file in the folder
-    }
-    if ($result) { // Remove from database only if physical file deleted
-        $remove = deleteImage($imgId);
-    }
-    if ($remove) { // Set a message based on the delete result
-        $message = "$filename was successfully deleted.";
-    } else {
-        $message = "$filename was NOT deleted.";
-    }
-    $_SESSION['message'] = $message;
-    header('location: .');  
-    break;
+        if(empty($clientId)) { // check for any empty lines in form
+            $_SESSION['message'] = 'Please select an author.';
+            // $authorList = getAuthors(); 
+            // $authorsList = buildAuthorsList($authorList);
+            // $vehicles = getVehicles();
+            // $vehiclesList = buildVehiclesSelect($vehicles);
+            include '../views/reviews-admin.php'; // empty field is found - show error message
+            exit;
+        }
+        $reviews = getClientReviews($clientId);
+        if(!count($reviews)){
+            $_SESSION['failMessage'] = "Sorry, we were unable to retrieve reviews.";
+        } else {
+            $Reviews = buildReviewsDisplay($reviews);
+        }
+        include '../views/reviews-admin.php';
+        break;
+
+    case 'filterVehicle':
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_VALIDATE_INT);
+        
+        if(empty($invId)) { // check for any empty lines in form
+            $_SESSION['message'] = 'Please select a vehicle.';
+            // $authorList = getAuthors(); 
+            // $authorsList = buildAuthorsList($authorList);
+            // $vehicles = getVehicles();
+            // $vehiclesList = buildVehiclesSelect($vehicles);
+            include '../views/reviews-admin.php'; // empty field is found - show error message
+            exit;
+        }
+        $reviews = getVehicleReviews($invId);
+        if(!count($reviews)){
+            $_SESSION['failMessage'] = "Sorry, we were unable to retrieve reviews.";
+        } else {
+            $Reviews = buildReviewsDisplay($reviews);
+        }
+        include '../views/reviews-admin.php';
+        break;
+
+    case 'editReview':
+   
+        break;
 
     case 'deleteReview':
         
@@ -70,18 +107,10 @@ switch ($action) {
         
         
     default:
-    $imageArray = getImages(); // Call function to return image info from database
-
-    if (count($imageArray)) { // Build the image information into HTML for display
-        $imageDisplay = buildImageDisplay($imageArray);
-    } else {
-        $imageDisplay = 'Sorry, no images could be found.';
-    }
-    $vehicles = getVehicles(); // Get vehicles information from database
-    $prodSelect = buildVehiclesSelect($vehicles); // Build a select list of vehicle information for the view   
-    include '../views/image-admin.php';
-    exit;
-    break;
+    
+        include '../views/image-admin.php';
+        exit;
+        break;
 
     
    }

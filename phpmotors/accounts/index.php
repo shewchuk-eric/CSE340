@@ -37,7 +37,7 @@ $action = filter_input(INPUT_POST, 'action');
         $hashCheck = password_verify($clientPassword, $clientData['clientPassword']); // check the user supplied password against the one returned from database
 
         if(!$hashCheck) {
-            $_SESSION['message'] = 'Please check your password and try again.'; // $hashCheck returned 'false' so give error message and return to login
+            $_SESSION['message'] = 'Please check your username and password and try again.'; // $hashCheck returned 'false' so give error message and return to login
             include '../views/login.php';
             exit;
         }
