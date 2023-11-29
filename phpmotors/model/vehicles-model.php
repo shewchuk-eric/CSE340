@@ -110,7 +110,6 @@ function buildVehiclesDisplay($vehicles, $classificationName) {
         $price = number_format($vehicle['invPrice']);
         $dv .= '<section class="inv-display">';
         $dv .= "<a href='/phpmotors/vehicles/?action=vehicleDetails&invId=$vehicle[invId]'>";
-        // $dv .= "<img src='/phpmotors/images/vehicles/$vehicle[invThumbnail]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= "<img src='$vehicle[imgPath]' alt='$vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= '<hr>';
         $dv .= "<h3>$vehicle[invMake] $vehicle[invModel]</h3>";
@@ -132,7 +131,6 @@ function buildVehicleDetails($details, $thumbnails) {
     $dv .= "<h3>$$price</h3>";
     $dv .= "<p>$details[invDescription]</p>";
     $dv .= "</article>";
-    // $dv .= "<img src='/phpmotors/images/vehicles/$details[invImage]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
     $dv .= "<img src='$details[imgPath]' alt='$details[invMake] $details[invModel] on phpmotors.com' class='fullImage'>";
     $dv .= "</div>";
     // build thumbnails div
