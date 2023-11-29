@@ -28,7 +28,7 @@ function getReviews($invId) { // Get reviews for a specific vehicle from reviews
 
 function getAuthors() {
     $db = phpmotorsConnect();
-    $sql = 'SELECT DISTINCT clientFirstname, clientLastname clientId FROM reviews r JOIN clients c ON r.clientId = c.clientId';
+    $sql = 'SELECT clientFirstname, clientLastname, r.clientId FROM reviews r JOIN clients c ON r.clientId = c.clientId';
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $authors = $stmt->fetchAll(PDO::FETCH_ASSOC);

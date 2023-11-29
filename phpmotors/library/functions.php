@@ -209,7 +209,7 @@ function buildAuthorsList($authorList) {
     $authorsList .= "<option>Choose an author</option>";
     foreach ($authorList as $author) {
         $authorsList .="<option value='$author[clientId]'";
-        $authorsList .= ">$author[clientLastname], $author[clientLastname]</option>";
+        $authorsList .= ">$author[clientLastname], $author[clientFirstname]</option>";
     }
     $authorsList .="</select>";
     return $authorsList;

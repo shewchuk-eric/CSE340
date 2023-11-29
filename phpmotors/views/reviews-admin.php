@@ -29,7 +29,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
         <div class="form-field submit-field">
             <input type="submit" value="Filter By Author">
             <input type="hidden" name="action" value="filterAuthor">
-            <input type="hidden" name="clientId">
+            <input type="hidden" name="clientId" value="<?php if(isset($authorsList['clientId'])){echo $authorsList['clientId'];} ?>">
         </div>
         </fieldset>
 
@@ -41,7 +41,7 @@ if(!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
         <div class="form-field submit-field">
             <input type="submit" value="Filter By Vehicle">
             <input type="hidden" name="action" value="filterVehicle">
-            <input type="hidden" name="invId">
+            <input type="hidden" name="invId"value="<?php if(isset($vehiclesList['invId'])){echo $vehiclesList['invId'];} ?>">
         </div>
         </fieldset>
     </form>
