@@ -233,8 +233,8 @@ function editReviewsDisplay($clientReviews) {
         $reviewId = $review['reviewId'];
         $postDate = substr($review['reviewDate'], 0, 10); 
         $list .= '<form class="review" method="post" action="/phpmotors/reviews/index.php">';    
-        $list .= "<label for='review' class='editReviewText'>On: $postDate you posted:</label>";
-        $list .= "<textarea name='review' id='review' required>$review[reviewText]</textarea>";
+        $list .= "<label class='editReviewText'>On: $postDate you posted:";
+        $list .= "<textarea name='review' required>$review[reviewText]</textarea></label>";
         $list .= "<input type='submit' value='Update My Review'>";
         $list .= "<input type='hidden' name='action' value='editReview'>";
         $list .= "<input type='hidden' name='updateReview' value='$reviewId'>";
@@ -253,5 +253,19 @@ function buildReviewsEdit($reviews) {
     }
     $list .= '</form>';
     return $list;
+}
+
+function buildGetReviewForm($userId, $fname, $lname, $invId) {
+    $getReview = "<form id='review' action='/phpmotors/reviews/index.php' method='post'>";
+    $getReview .= "<fieldset><legend>Write A Review</legend>";
+    $getReview .= "<label for='newReview'>Posting as: $fname. $lname</label>";
+    $getReview .= "<div class='form-field input-right'><textarea name='newReview' id='newReview'></textarea></div>";
+    $getReview .= "<div class='form-field submit-field'>";
+    $getReview .= "<input type='submit' value='Submit My Review'>";
+    $getReview .= "<input type='hidden' name='action' value='addNewReview'>";
+    $getReview .= "<input type='hidden' name='user' value='$userId'>";
+    $getReview .= "<input type='hidden' name='vehicle' value='$invId'>";
+    $getReview .= "</div></fieldset></form>";
+    return $getReview;
 }
 ?>

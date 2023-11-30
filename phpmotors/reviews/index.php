@@ -91,7 +91,7 @@ switch ($action) {
         $reviewId = filter_input(INPUT_POST, 'updateReview', FILTER_SANITIZE_NUMBER_INT);
 
         if(empty($reviewText)) { // check for any empty lines in form
-            $_SESSION['message1'] = "Your review text is missing.";
+            $_SESSION['message2'] = "A blank review cannot be submitted.";
             header ('location: /phpmotors/accounts/index.php?action=update');
             exit;
         }
