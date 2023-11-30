@@ -503,9 +503,13 @@ footer {
   border: 3px solid #2f5d85;
   margin: 0.5rem auto;
 }
-
 .reviewText :not(p) {
   color: #2f5d85;
+}
+
+.editReviewText {
+  padding: 1rem;
+  margin: 0.5rem auto;
 }
 
 @media screen and (min-width: 551px) and (max-width: 850px) {

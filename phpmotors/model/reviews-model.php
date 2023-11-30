@@ -42,9 +42,9 @@ function getClientReviews($clientId) { // Get reviews uploaded by a specific cli
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
     $stmt->execute();
-    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $clientReviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $reviews;
+    return $clientReviews;
 }
 
 function getVehicleReviews($invId) {

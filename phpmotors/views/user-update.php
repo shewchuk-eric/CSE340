@@ -4,17 +4,16 @@
 <h1 id='form-title'>Manage Account</h1>
 <section class='form-container'>
 
-<?php
+    <form id="register" method="post" action="/phpmotors/accounts/index.php">
+    <fieldset><legend>Update Account Information</legend>
+    <?php
     if(isset($_SESSION['message'])) {
         $message = "<span class='message'>";
         $message .= $_SESSION['message'];
         $message .="</span>";
         echo $message;
-    }
-?>
-
-    <form id="register" method="post" action="/phpmotors/accounts/index.php">
-        <fieldset><legend>Update Account Information</legend>
+        }
+    ?>
         <div class="form-field input-right">
             <label for="clientFirstname">First Name</label>
             <input name="clientFirstname" id="clientFirstname" type="text" <?php if(isset($_SESSION['clientData'])){echo "value=".$_SESSION['clientData']['clientFirstname'];}?> required>
@@ -35,17 +34,16 @@
         </fieldset>
     </form>
 
-<?php
+    <form id="update" method="post" action="/phpmotors/accounts/index.php">
+    <fieldset><legend>Update Password</legend>
+    <?php
     if(isset($_SESSION['message1'])) {
         $message = "<span class='message'>";
         $message .= $_SESSION['message1'];
         $message .="</span>";
         echo $message;
-    }
-?>
-
-    <form id="update" method="post" action="/phpmotors/accounts/index.php">
-        <fieldset><legend>Update Password</legend>
+        }
+    ?>
         <div class="form-field input-right">
             <label for="clientPassword">Password</label>
             <span id="password">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
@@ -60,8 +58,7 @@
     </form>
 
 
-    <form id="updateReviews" method="post" action="/phpmotors/reviews/index.php">
-        <fieldset><legend>Update/Delete Your Reviews</legend>
+    <h2>Manage Your Reviews</h2>
         <?php if(isset($_SESSION['message2'])) {
             $message = "<span class='message'>";
             $message .= $_SESSION['message2'];
@@ -69,17 +66,17 @@
             echo $message;
         } ?>
 
-        <div class="form-field input-right">
-            <?php if(isset($noReviews)) {
-                echo $noReviews;
-            } else if(isset($reviewList)) {
-                echo $reviewList;
-            }
-            ?>
-        </fieldset>
-    </form>
+        <?php if(isset($noReviews)) {
+            echo $noReviews;
+        } else if(isset($reviewList)) {
+            echo $reviewList;
+        }
+        ?>
+       <!-- </fieldset>
+    </form> -->
 </section>
 <script src="../scripts/expand.js"></script>
     <?php unset($_SESSION['message']); ?>
     <?php unset($_SESSION['message1']); ?>
+    <?php unset($_SESSION['message2']); ?>
 <?php include_once 'footer.php'; ?>

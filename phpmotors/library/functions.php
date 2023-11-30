@@ -227,20 +227,19 @@ function buildReviewsDisplay($reviews) {
     return $list;
 }
 
-function editReviewsDisplay($reviews) {
+function editReviewsDisplay($clientReviews) {
     $list = '<div id="reviews">';
-    foreach ($reviews as $review) {
+    foreach ($clientReviews as $review) {
         $reviewId = $review['reviewId'];
-        $postDate = substr($review['reviewDate'], 0, 10);      
-        $list = "<article class='reviewText'><span>On: $postDate you posted:</span>";
+        $postDate = substr($review['reviewDate'], 0, 10); 
+        $list .= '<form class="review">';    
+        $list .= "<label for='review' class='editReviewText'>On: $postDate you posted:</label>";
         $list .= "<textarea name='review' id='review' required>$review[reviewText]</textarea>";
         $list .= "<input type='submit' value='Update My Review'>";
         $list .= "<input type='hidden' name='action' value='editReview'>";
         $list .= "<input type='hidden' name='updateReview' value='$reviewId'>";
-        $list .= "<input type='submit' value='Delete My Review'>";
-        $list .= "<input type='hidden' name='action' value='deleteReview'>";
-        $list .= "<input type='hidden' name='removeReview' value='$reviewId'>";
-        $list .= "</article>";
+        $list .= "<a href='/phpmotors/reviews/index.php/?action=deleteReview&removeReview=$reviewId'>Delete Review - There is no undo!</a>";
+        $list .= "</form>";
     }
     $list .="</div>";
     return $list;

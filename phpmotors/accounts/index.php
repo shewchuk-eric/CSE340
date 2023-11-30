@@ -100,11 +100,11 @@ $action = filter_input(INPUT_POST, 'action');
 
     case 'update':
         $clientId = $_SESSION['clientData']['clientId'];
-        $reviews = getClientReviews($clientId);
-        if(!count($reviews)){
+        $clientReviews = getClientReviews($clientId);
+        if(!count($clientReviews)){
             $noReviews = "You have no saved reviews.";
         } else {
-            $reviewList = editReviewsDisplay($reviews);
+            $reviewList = editReviewsDisplay($clientReviews);
         }
         include '../views/user-update.php';
         break;

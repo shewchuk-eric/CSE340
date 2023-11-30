@@ -287,10 +287,14 @@ footer {
         padding: 1rem;
         border: $border;
         margin: .5rem auto;
+        & :not(p) {
+            color: $dark;
+        }
     }
-    
-    .reviewText :not(p) {
-        color: $dark;
+     
+    .editReviewText {
+        padding: 1rem;
+        margin: .5rem auto;
     }
 
 

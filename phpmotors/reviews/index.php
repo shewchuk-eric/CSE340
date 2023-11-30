@@ -97,25 +97,25 @@ switch ($action) {
         }
         $updateResult = updateReview($reviewId, $reviewText);
         if ($updateResult === 1) {
-            $_SESSION['message1'] = "Your review has been updated.";
+            $_SESSION['message2'] = "Your review has been updated.";
             header ('location: /phpmotors/accounts/index.php?action=update');
             exit;
         } else {
-            $_SESSION['message1'] = "Your review cannot be updated at this time. Please try again later.";
+            $_SESSION['message2'] = "Your review cannot be updated at this time. Please try again later.";
             header ('location: /phpmotors/accounts/index.php?action=update');
             exit;
           }
         break;
 
     case 'deleteReview':
-        $reviewId = filter_input(INPUT_POST, 'removeReview', FILTER_SANITIZE_NUMBER_INT);
+        $reviewId = filter_input(INPUT_GET, 'removeReview', FILTER_SANITIZE_NUMBER_INT);
         $deleteResult = deleteReview($reviewId);
         if ($deleteResult === 1) {
-            $_SESSION['message1'] = "Your review has been deleted.";
+            $_SESSION['message2'] = "Your review has been deleted.";
             header ('location: /phpmotors/accounts/index.php?action=update');
             exit;
         } else {
-            $_SESSION['message1'] = "Your review cannot be deleted at this time. Please try again later.";
+            $_SESSION['message2'] = "Your review cannot be deleted at this time. Please try again later.";
             header ('location: /phpmotors/accounts/index.php?action=update');
             exit;
           }

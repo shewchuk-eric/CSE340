@@ -5,8 +5,8 @@ function phpmotorsConnect(){
  $dbname= 'phpmotors';
  $username = 'iClient';
  $password = 'Clunker08'; 
- //$dsn = "mysql:host=$server;dbname=$dbname;port=3306"; // laptop computer
- $dsn = "mysql:host=$server;dbname=$dbname;port=3307"; // studio computer
+ $dsn = "mysql:host=$server;dbname=$dbname;port=3306"; // laptop computer
+ //$dsn = "mysql:host=$server;dbname=$dbname;port=3307"; // studio computer
  $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
 
  // Create the actual connection object and assign it to a variable
