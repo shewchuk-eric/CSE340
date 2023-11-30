@@ -231,15 +231,15 @@ function editReviewsDisplay($reviews) {
     $list = '<div id="reviews">';
     foreach ($reviews as $review) {
         $reviewId = $review['reviewId'];
-        $postDate = substr($review['reviewDate'], 0, 9);      
+        $postDate = substr($review['reviewDate'], 0, 10);      
         $list = "<article class='reviewText'><span>On: $postDate you posted:</span>";
         $list .= "<textarea name='review' id='review' required>$review[reviewText]</textarea>";
         $list .= "<input type='submit' value='Update My Review'>";
         $list .= "<input type='hidden' name='action' value='editReview'>";
-        $list .= "<input type='hidden' name='selectedReview' value='$reviewId'>";
+        $list .= "<input type='hidden' name='updateReview' value='$reviewId'>";
         $list .= "<input type='submit' value='Delete My Review'>";
         $list .= "<input type='hidden' name='action' value='deleteReview'>";
-        $list .= "<input type='hidden' name='selectedReview' value='$reviewId'>";
+        $list .= "<input type='hidden' name='removeReview' value='$reviewId'>";
         $list .= "</article>";
     }
     $list .="</div>";

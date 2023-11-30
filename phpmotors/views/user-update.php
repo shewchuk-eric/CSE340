@@ -38,7 +38,7 @@
 <?php
     if(isset($_SESSION['message1'])) {
         $message = "<span class='message'>";
-        $message .= $_SESSION['message'];
+        $message .= $_SESSION['message1'];
         $message .="</span>";
         echo $message;
     }
@@ -62,9 +62,9 @@
 
     <form id="updateReviews" method="post" action="/phpmotors/reviews/index.php">
         <fieldset><legend>Update/Delete Your Reviews</legend>
-        <?php if(isset($_SESSION['message1'])) {
+        <?php if(isset($_SESSION['message2'])) {
             $message = "<span class='message'>";
-            $message .= $_SESSION['message1'];
+            $message .= $_SESSION['message2'];
             $message .="</span>";
             echo $message;
         } ?>
@@ -76,16 +76,6 @@
                 echo $reviewList;
             }
             ?>
-            <!-- <label for="clientPassword">Password</label>
-            <span id="password">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
-            <input name="clientPassword" id="clientPassword" type="password" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
-        </div>
-        <div class="form-field submit-field">
-            <input type="submit" value="Update Password">
-            <input type="hidden" name="action" value="passUpdate">
-            <input type="hidden" name="userId" value="<?php if(isset($_SESSION['clientData'])){$value = "value="; $value .= $_SESSION['clientData']['clientId']; echo $value;}?>">
-        </div> -->
-
         </fieldset>
     </form>
 </section>

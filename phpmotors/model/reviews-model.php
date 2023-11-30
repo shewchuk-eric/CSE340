@@ -73,7 +73,7 @@ function updateReview($reviewId, $reviewText) { // Update a single specific revi
     $db = phpmotorsConnect();
     $sql = 'UPDATE reviews SET reviewText = :reviewText WHERE reviewId = :reviewId';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_STR); // Tells database what type of information is being sent
+    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT); // Tells database what type of information is being sent
     $stmt->bindValue(':reviewText', $reviewText, PDO::PARAM_STR);
     $stmt->execute();
     $reviewUpdate = $stmt->rowCount();
