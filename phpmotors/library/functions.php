@@ -232,7 +232,7 @@ function editReviewsDisplay($clientReviews) {
     foreach ($clientReviews as $review) {
         $reviewId = $review['reviewId'];
         $postDate = substr($review['reviewDate'], 0, 10); 
-        $list .= '<form class="review">';    
+        $list .= '<form class="review" method="post" action="/phpmotors/reviews/index.php">';    
         $list .= "<label for='review' class='editReviewText'>On: $postDate you posted:</label>";
         $list .= "<textarea name='review' id='review' required>$review[reviewText]</textarea>";
         $list .= "<input type='submit' value='Update My Review'>";
