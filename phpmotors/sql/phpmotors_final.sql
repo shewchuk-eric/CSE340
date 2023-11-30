@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Nov 29, 2023 at 04:12 AM
+-- Generation Time: Nov 30, 2023 at 11:15 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -180,7 +180,7 @@ CREATE TABLE `inventory` (
 INSERT INTO `inventory` (`invId`, `invMake`, `invModel`, `invDescription`, `invImage`, `invThumbnail`, `invPrice`, `invStock`, `invColor`, `classificationId`) VALUES
 (1, 'Jeep', 'Wrangler', 'The Jeep Wrangler is small and compact with enough power to get you where you want to go. It is great for everyday driving as well as off-roading whether that be on the rocks or in the mud!', 'wrangler.jpg', 'wrangler-tn.jpg', 28045, 4, 'Orange', 1),
 (2, 'Ford', 'Model T', 'The Ford Model T can be a bit tricky to drive. It was the first car to be put into production. You can get it in any color you want if it is black.', 'ford-modelt.jpg', 'ford-modelt-tn.jpg', 30000, 2, 'Black', 2),
-(3, 'Lamborghini', 'Adventador', 'This V-12 engine packs a punch in this sporty car. Make sure you wear your seatbelt and obey all traffic laws.', 'lambo-Adve.jpg', 'lambo-Adve-tn.jpg', 417650, 1, 'Blue', 3),
+(3, 'Lamborghini', 'Aventador', 'This V-12 engine packs a punch in this sporty car. Make sure you wear your seatbelt and obey all traffic laws.', 'lambo-Adve.jpg', 'lambo-Adve-tn.jpg', 417650, 1, 'Blue', 3),
 (4, 'Monster', 'Truck', 'Most trucks are for working, this one is for fun. This beast comes with 60 inch tires giving you the traction needed to jump and roll in the mud.', 'monster.jpg', 'monster-tn.jpg', 150000, 3, 'purple', 4),
 (5, 'Mechanic', 'Special', 'Not sure where this car came from. However, with a little tender loving care it will run as good a new.', 'ms.jpg', 'ms-tn.jpg', 100, 1, 'Rust', 5),
 (6, 'Batmobile', 'Custom', 'Ever want to be a superhero? Now you can with the bat mobile. This car allows you to switch to bike mode allowing for easy maneuvering through traffic during rush hour.', 'bat.jpg', 'bat-tn.jpg', 65000, 1, 'Black', 3),
@@ -212,6 +212,22 @@ CREATE TABLE `reviews` (
   `invId` int(10) UNSIGNED NOT NULL,
   `clientId` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`reviewId`, `reviewText`, `reviewDate`, `invId`, `clientId`) VALUES
+(9, 'Some WD-40 and a can of Rustoleum... good as new.', '2023-11-30 10:00:00', 5, 22),
+(10, 'Traffic no longer gets me down.', '2023-11-30 10:00:00', 13, 22),
+(11, 'The car goes almost as fast as the gas!', '2023-11-28 10:00:00', 3, 22),
+(12, 'Sturdier than my x-wing fighter.', '2023-11-26 10:00:00', 12, 20),
+(13, 'There&#039;s nothing like this on Endor!', '2023-11-30 10:00:00', 2, 20),
+(15, 'More muscle than the Hulk', '2023-10-27 20:49:08', 20, 7),
+(16, 'My buddy drives one of these.  All kinds of bells and whistles.', '2023-08-23 20:51:17', 6, 7),
+(17, 'Perfect for going on a picnic.', '2010-10-29 10:00:00', 2, 10),
+(18, 'Even faster than a round from my sixgun.', '2023-11-07 20:57:38', 20, 17),
+(19, 'Driving this thing makes me want to pull out my hose everywhere I go.', '2023-09-19 22:14:54', 8, 14);
 
 --
 -- Indexes for dumped tables
@@ -284,7 +300,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `reviewId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `reviewId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
