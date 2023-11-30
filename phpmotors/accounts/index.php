@@ -154,7 +154,7 @@ $action = filter_input(INPUT_POST, 'action');
         $checkPassword = checkPassword($clientPassword); // call function to validate for correct password format
 
         if(empty($checkPassword)) { // check for any empty lines in form
-            $_SESSION['message'] = 'Please provide a valid password.';
+            $_SESSION['message1'] = 'Please provide a valid password.';
             include '../views/user-update.php'; // empty field is found - show error message
             exit;
         }
@@ -162,14 +162,14 @@ $action = filter_input(INPUT_POST, 'action');
         $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
         $passChange = updatePass($userId, $hashedPassword); // all fields populated - send to insert function in 'accounts-model.php'
         if ($passChange === 1) {
-            $_SESSION['message'] = "Your password has been updated.";
+            $_SESSION['message1'] = "Your password has been updated.";
             $clientData = getClient($_SESSION['clientData']['clientEmail']);
             array_pop($clientData); // remove $clientPassword from the array - no longer needed
             $_SESSION['clientData']= $clientData;
             header('Location: /phpmotors/accounts/');
             exit;
         } else {
-            $_SESSION['message'] = "Sorry $clientFirstname, but the update failed. Please try again.";
+            $_SESSION['message1'] = "Sorry $clientFirstname, but the update failed. Please try again.";
             include '../views/user-update.php';
             exit;
           }
