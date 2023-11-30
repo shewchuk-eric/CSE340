@@ -11,10 +11,10 @@ require_once '../model/vehicles-model.php';
 $classifications = getClassList();
 $navList = buildList($classifications);
 
-$authorList = getAuthors(); 
-$authorsList = buildAuthorsList($authorList);
-$vehicles = getVehicles();
-$vehiclesList = buildVehiclesSelect($vehicles);
+// $authorList = getAuthors(); 
+// $authorsList = buildAuthorsList($authorList);
+// $vehicles = getVehicles();
+// $vehiclesList = buildVehiclesSelect($vehicles);
 
 $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if ($action == NULL) {
@@ -87,11 +87,38 @@ switch ($action) {
         
 
     case 'editReview':
-   
+        $reviewText = trim(filter_input(INPUT_POST, 'review', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $reviewId = filter_input(INPUT_POST, 'selectedReview', FILTER_SANITIZE_NUMBER_INT);
+
+        if(empty($reviewText)) { // check for any empty lines in form
+            $_SESSION['message1'] = "Your review text is missing.";
+            header ('location: /phpmotors/accounts/index.php?action=update');
+            exit;
+        }
+        $updateResult = updateReview($reviewId, $reviewText);
+        if ($updateResult === 1) {
+            $_SESSION['message1'] = "Your review has been updated.";
+            header ('location: /phpmotors/accounts/index.php?action=update');
+            exit;
+        } else {
+            $_SESSION['message1'] = "Your review cannot be updated at this time. Please try again later.";
+            header ('location: /phpmotors/accounts/index.php?action=update');
+            exit;
+          }
         break;
 
     case 'deleteReview':
-        
+        $reviewId = filter_input(INPUT_POST, 'selectedReview', FILTER_SANITIZE_NUMBER_INT);
+        $deleteResult = deleteReview($reviewId);
+        if ($deleteResult === 1) {
+            $deleteMessage = "<p>Your review has been deleted.</p>";
+            header ('location: /phpmotors/accounts/index.php?action=update');
+            exit;
+        } else {
+            $deleteMessage = "<p>Your review cannot be deleted at this time. Please try again later.</p>";
+            header ('location: /phpmotors/accounts/index.php?action=update');
+            exit;
+          }
         break;
         
         

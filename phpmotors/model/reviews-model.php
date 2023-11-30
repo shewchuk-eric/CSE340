@@ -38,7 +38,7 @@ function getAuthors() {
 
 function getClientReviews($clientId) { // Get reviews uploaded by a specific client
     $db = phpmotorsConnect();
-    $sql = 'SELECT reviewText, reviewDate FROM reviews WHERE clientId = :clientId';
+    $sql = 'SELECT reviewId, reviewText, reviewDate FROM reviews WHERE clientId = :clientId ORDER BY reviewDate DESC';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
     $stmt->execute();

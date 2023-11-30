@@ -219,11 +219,30 @@ function buildReviewsDisplay($reviews) {
     $list = '<div id="reviews">';
     foreach ($reviews as $review) {
         $fname = substr($review['clientFirstname'], 0, 1);
-        $postDate = substr($review['reviewDate'], 0, 9);
+        $postDate = substr($review['reviewDate'], 0, 10);
         $list .= "<article class='reviewText'><span>User: $fname $review[clientLastname], On: $postDate Said:</span>";
         $list .= "<p>$review[reviewText]</p></article>";
     }
     $list .= '</div>';
+    return $list;
+}
+
+function editReviewsDisplay($reviews) {
+    $list = '<div id="reviews">';
+    foreach ($reviews as $review) {
+        $reviewId = $review['reviewId'];
+        $postDate = substr($review['reviewDate'], 0, 9);      
+        $list = "<article class='reviewText'><span>On: $postDate you posted:</span>";
+        $list .= "<textarea name='review' id='review' required>$review[reviewText]</textarea>";
+        $list .= "<input type='submit' value='Update My Review'>";
+        $list .= "<input type='hidden' name='action' value='editReview'>";
+        $list .= "<input type='hidden' name='selectedReview' value='$reviewId'>";
+        $list .= "<input type='submit' value='Delete My Review'>";
+        $list .= "<input type='hidden' name='action' value='deleteReview'>";
+        $list .= "<input type='hidden' name='selectedReview' value='$reviewId'>";
+        $list .= "</article>";
+    }
+    $list .="</div>";
     return $list;
 }
 

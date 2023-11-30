@@ -99,16 +99,13 @@ $action = filter_input(INPUT_POST, 'action');
         break;
 
     case 'update':
-        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_VALIDATE_INT);
-
+        $clientId = $_SESSION['clientData']['clientId'];
         $reviews = getClientReviews($clientId);
         if(!count($reviews)){
-            $_SESSION['failMessage'] = "Sorry, we were unable to retrieve reviews.";
+            $noReviews = "You have no saved reviews.";
         } else {
-            $Reviews = buildReviewsDisplay($reviews);
+            $reviewList = editReviewsDisplay($reviews);
         }
-        include '../views/reviews-admin.php';
-        break;
         include '../views/user-update.php';
         break;
 
