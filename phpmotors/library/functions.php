@@ -216,6 +216,18 @@ function buildAuthorsList($authorList) {
 }
 
 function buildReviewsDisplay($reviews) {
+    $list = '<div id="reviews">';
+    foreach ($reviews as $review) {
+        $fname = substr($review['clientFirstname'], 0, 1);
+        $postDate = substr($review['reviewDate'], 0, 9);
+        $list .= "<article class='reviewText'><span>User: $fname $review[clientLastname], On: $postDate Said:</span>";
+        $list .= "<p>$review[reviewText]</p></article>";
+    }
+    $list .= '</div>';
+    return $list;
+}
+
+function buildReviewsEdit($reviews) {
     $list = '<form class="review">';
     foreach ($reviews as $review) {
         $list .= "<div class='form-field input-right'><label for='review'>$review[reviewDate]</label>";

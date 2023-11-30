@@ -24,46 +24,37 @@ if ($action == NULL) {
 
 switch ($action) {
     case 'addNewReview':
-	$invId = filter_input(INPUT_POST, 'invId', FILTER_VALIDATE_INT); // Store the incoming vehicle id and primary picture indicator
-	$imgPrimary = filter_input(INPUT_POST, 'imgPrimary', FILTER_VALIDATE_INT);
-    $imgName = $_FILES['file1']['name']; // Store the name of the uploaded image
-
-    $imageCheck = checkExistingImage($imgName);
+	$invId = filter_input(INPUT_POST, 'vehicle', FILTER_VALIDATE_INT); // Store the incoming vehicle id
+	$clientId = filter_input(INPUT_POST, 'user', FILTER_VALIDATE_INT);
+    $reviewText = trim(filter_input(INPUT_POST, 'newReview', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
       
-    if($imageCheck){
-        $message = 'An image by that name already exists.';
-    } elseif (empty($invId) || empty($imgName)) {
-        $message = 'You must select an existing vehicle and image file for the vehicle.';
-    } else {
-        $imgPath = uploadFile('file1'); // Upload the image, store the returned path to the file
-        $result = storeImages($imgPath, $invId, $imgName, $imgPrimary); // Insert the image information to the database, get the result
-        if ($result) {
-            $message = "$imgName was uploaded.";
-        } else {
-            $message = 'Sorry, the upload failed.';
-        }
+    if(empty($reviewText)) {
+        $message = "<p>No review was submitted</p>";
+        include '../views/details.php'; // empty field is found - show error message
+        exit;
     }
-    $_SESSION['message'] = $message;
-    header('location: .');
-    break;
+    $reviewDate = date("Y/m/d");
+    $addReview = storeReview($reviewText, $reviewDate, $invId, $clientId);
 
-    case 'adminEdit':
-        // $authorList = getAuthors(); 
-        // $authorsList = buildAuthorsList($authorList);
-        // $vehicles = getVehicles();
-        // $vehiclesList = buildVehiclesSelect($vehicles);
-        include '../views/reviews-admin.php';
-        break;
+    if ($addReview === 1) {
+        $message = "<p>Your review has been submitted. Thanks!</p>";
+        $_SESSION['message'] = $message;
+        header ("location: /phpmotors/vehicles/index.php?action=vehicleDetails&invId=$invId");
+        exit;
+    } else {
+        $message = "<p>Your review cannot be submitted at this time. Please try again later.</p>";
+        $_SESSION['message'] = $message;
+        include '../views/details.php';
+        exit;
+      }
+
 
     case 'filterAuthor':
         $clientId = filter_input(INPUT_POST, 'clientId', FILTER_VALIDATE_INT);
         
         if(empty($clientId)) { // check for any empty lines in form
             $_SESSION['message'] = 'Please select an author.';
-            // $authorList = getAuthors(); 
-            // $authorsList = buildAuthorsList($authorList);
-            // $vehicles = getVehicles();
-            // $vehiclesList = buildVehiclesSelect($vehicles);
+
             include '../views/reviews-admin.php'; // empty field is found - show error message
             exit;
         }
@@ -76,15 +67,12 @@ switch ($action) {
         include '../views/reviews-admin.php';
         break;
 
+
     case 'filterVehicle':
         $invId = filter_input(INPUT_POST, 'invId', FILTER_VALIDATE_INT);
         
         if(empty($invId)) { // check for any empty lines in form
             $_SESSION['message'] = 'Please select a vehicle.';
-            // $authorList = getAuthors(); 
-            // $authorsList = buildAuthorsList($authorList);
-            // $vehicles = getVehicles();
-            // $vehiclesList = buildVehiclesSelect($vehicles);
             include '../views/reviews-admin.php'; // empty field is found - show error message
             exit;
         }
@@ -96,6 +84,7 @@ switch ($action) {
         }
         include '../views/reviews-admin.php';
         break;
+        
 
     case 'editReview':
    

@@ -3,8 +3,9 @@
 session_start(); // create or access a session - required at the top of ALL controllers
 
 require_once '../library/connections.php'; // bring in DB connections ability
-require_once '../model/vehicles-model.php'; // contains functions to manage vehicle inventory 
 require_once '../library/functions.php'; // contains data validation functions
+require_once '../model/vehicles-model.php'; // contains functions to manage vehicle inventory 
+require_once '../model/reviews-model.php'; // contains functions to manage user reviews
 require_once '../model/uploads-model.php'; // used to get thumbnail images for 'vehicleDetails' case
 
 $classifications = getClassList(); // get classifications from main-model.php
@@ -185,6 +186,13 @@ $action = filter_input(INPUT_POST, 'action');
         } else {
             $thumbnails = getThumbs($invId);
             $detailsDisplay = buildVehicleDetails($details, $thumbnails);
+            $reviews = getVehicleReviews($invId);
+            if(!count($reviews)) {
+                $reviewMessage = 'Be the first to review this vehicle.';
+                include '../views/details.php';
+                exit;
+            }
+            $listReviews = buildReviewsDisplay($reviews);
         }
         include '../views/details.php';
         break;

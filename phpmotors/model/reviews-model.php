@@ -49,7 +49,7 @@ function getClientReviews($clientId) { // Get reviews uploaded by a specific cli
 
 function getVehicleReviews($invId) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT reviewText, reviewDate FROM reviews WHERE invId = :invId';
+    $sql = 'SELECT reviewText, reviewDate, clientFirstname, clientLastname FROM reviews r JOIN clients c ON r.clientId = c.clientId WHERE invId = :invId ORDER BY r.reviewDate DESC';
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();

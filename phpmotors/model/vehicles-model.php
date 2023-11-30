@@ -145,7 +145,7 @@ function buildVehicleDetails($details, $thumbnails) {
 }
 
 // GET INFORMATION ABOUT ALL VEHICLES IN INVENTORY FOR 'UPLOADS/INDEX.PHP'
-function getVehicles(){
+function getVehicles() {
 	$db = phpmotorsConnect();
 	$sql = 'SELECT invId, invMake, invModel FROM inventory';
 	$stmt = $db->prepare($sql);

@@ -3,8 +3,9 @@
 session_start(); // create or access a session - required at the top of ALL controllers
 
 require_once '../library/connections.php'; // bring in DB connections ability
-require_once '../model/accounts-model.php'; // contains functions to manage user accounts 
 require_once '../library/functions.php'; // contains data validation functions
+require_once '../model/accounts-model.php'; // contains functions to manage user accounts 
+require_once '../model/reviews-model.php'; // contains functions to manage user reviews 
 
 $classifications = getClassList(); // get classifications from functions.php
 $navList = buildList($classifications); // Build the navigation list using results from getClassifications()
@@ -98,6 +99,16 @@ $action = filter_input(INPUT_POST, 'action');
         break;
 
     case 'update':
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_VALIDATE_INT);
+
+        $reviews = getClientReviews($clientId);
+        if(!count($reviews)){
+            $_SESSION['failMessage'] = "Sorry, we were unable to retrieve reviews.";
+        } else {
+            $Reviews = buildReviewsDisplay($reviews);
+        }
+        include '../views/reviews-admin.php';
+        break;
         include '../views/user-update.php';
         break;
 

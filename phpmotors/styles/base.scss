@@ -283,6 +283,16 @@ footer {
             }
     }
 
+    .reviewText {
+        padding: 1rem;
+        border: $border;
+        margin: .5rem auto;
+    }
+    
+    .reviewText :not(p) {
+        color: $dark;
+    }
+
 
     @import 'medium';
     @import 'large';
