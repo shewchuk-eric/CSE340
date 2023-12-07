@@ -180,9 +180,11 @@ $action = filter_input(INPUT_POST, 'action');
     case 'vehicleDetails':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         $details = getInvItemInfo($invId);
-        $userId = $_SESSION['clientData']['clientId'];
-        $fname = substr($_SESSION['clientData']['clientFirstname'], 0, 1);
-        $lname = $_SESSION['clientData']['clientLastname'];
+        if(isset($_SESSION['clientData'])) {
+            $userId = $_SESSION['clientData']['clientId'];
+            $fname = substr($_SESSION['clientData']['clientFirstname'], 0, 1);
+            $lname = $_SESSION['clientData']['clientLastname'];
+        }
         if(!count($details)){
         $_SESSION['message'] = "Sorry, we could not get the details.";
         include '../views/classification.php';
@@ -192,11 +194,15 @@ $action = filter_input(INPUT_POST, 'action');
             $reviews = getVehicleReviews($invId);
             if(!count($reviews)) {
                 $reviewMessage = 'Be the first to review this vehicle.';
+                if(isset($_SESSION['clientData'])) {
                 $getReview = buildGetReviewForm($userId, $fname, $lname, $invId);
+                }
                 include '../views/details.php';
                 exit;
             }     
-            $getReview = buildGetReviewForm($userId, $fname, $lname, $invId);
+            if(isset($_SESSION['clientData'])) {
+                $getReview = buildGetReviewForm($userId, $fname, $lname, $invId);
+            }
             $listReviews = buildReviewsDisplay($reviews);
         }
         include '../views/details.php';
